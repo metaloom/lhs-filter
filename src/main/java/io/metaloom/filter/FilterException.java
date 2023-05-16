@@ -8,4 +8,8 @@ public class FilterException extends RuntimeException {
 		super(msg);
 	}
 
+	public FilterException(String msg, Throwable t) {
+		super(msg, t);
+	}
+
 }

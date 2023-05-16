@@ -2,13 +2,13 @@ package io.metaloom.filter.impl;
 
 import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.value.FilterValue;
+import io.metaloom.filter.value.RangeFilterValue;
 
-public class RangeFilter extends AbstractFilter {
+public class RangeFilter<T extends RangeFilterValue> extends AbstractFilter<T> {
 
 	public static final String OPERATION_KEY = "range";
 
-	public RangeFilter(FilterKey key, FilterValue value) {
+	public RangeFilter(FilterKey key, T value) {
 		super(key, value);
 	}
 

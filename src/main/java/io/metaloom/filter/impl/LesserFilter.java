@@ -2,13 +2,13 @@ package io.metaloom.filter.impl;
 
 import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.value.FilterValue;
+import io.metaloom.filter.value.NumericFilterValue;
 
-public class LesserFilter extends AbstractFilter {
+public class LesserFilter extends AbstractFilter<NumericFilterValue> {
 
 	public static final String OPERATION_KEY = "lte";
 
-	public LesserFilter(FilterKey key, FilterValue value) {
+	public LesserFilter(FilterKey key, NumericFilterValue value) {
 		super(key, value);
 	}
 

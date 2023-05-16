@@ -1,4 +1,6 @@
-package io.metaloom.filter.value;
+package io.metaloom.filter.value.impl;
+
+import io.metaloom.filter.value.FilterValue;
 
 public class StringFilterValue implements FilterValue {
 
@@ -11,5 +13,9 @@ public class StringFilterValue implements FilterValue {
 	@Override
 	public String toString() {
 		return val.toString();
+	}
+
+	public static StringFilterValue create(String val) {
+		return new StringFilterValue(val);
 	}
 }

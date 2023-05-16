@@ -2,12 +2,12 @@ package io.metaloom.filter;
 
 import io.metaloom.filter.value.FilterValue;
 
-public abstract class AbstractFilter implements Filter {
+public abstract class AbstractFilter<T extends FilterValue> implements Filter<T> {
 
 	private FilterKey key;
-	private FilterValue value;
+	private T value;
 
-	public AbstractFilter(FilterKey key, FilterValue value) {
+	public AbstractFilter(FilterKey key,  T value) {
 		this.key = key;
 		this.value = value;
 	}
@@ -24,7 +24,7 @@ public abstract class AbstractFilter implements Filter {
 	}
 
 	@Override
-	public FilterValue value() {
+	public T value() {
 		return value;
 	}
 
