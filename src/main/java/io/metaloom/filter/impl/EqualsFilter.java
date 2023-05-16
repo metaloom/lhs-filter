@@ -17,5 +17,4 @@ public class EqualsFilter extends AbstractFilter {
 		return OPERATION_KEY;
 	}
 
-
 }

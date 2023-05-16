@@ -19,13 +19,13 @@ public abstract class AbstractFilter implements Filter {
 	}
 
 	@Override
-	public FilterKey key() {
+	public FilterKey filterKey() {
 		return key;
 	}
 
 	@Override
-	public String value() {
-		return value.toString();
+	public FilterValue value() {
+		return value;
 	}
 
 }

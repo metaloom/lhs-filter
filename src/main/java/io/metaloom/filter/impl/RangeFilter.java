@@ -4,11 +4,11 @@ import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.value.FilterValue;
 
-public class WithinFilter extends AbstractFilter {
+public class RangeFilter extends AbstractFilter {
 
 	public static final String OPERATION_KEY = "range";
 
-	public WithinFilter(FilterKey key, FilterValue value) {
+	public RangeFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
