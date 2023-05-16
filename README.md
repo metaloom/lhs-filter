@@ -32,12 +32,13 @@ This library is still in early development.
 
 ```java
 // Construct a filter
-Filter filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
+EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
 assertEquals("username[eq]=joedoe", filter.toString());
 
 // Parse a filter
-Filter parsedFilter = Filter.parse("username[eq]=joedoe", ExampleFilterKey::fromKey);
-assertEquals(ExampleFilterKey.USER_USERNAME, parsedFilter.key());
+List<Filter<?>> parsedFilters = Filter.parse("username[eq]=joedoe", ExampleFilterKey::fromKey);
+Filter<?> parsedFilter = parsedFilters.get(0);
+assertEquals(ExampleFilterKey.USER_USERNAME, parsedFilter.filterKey());
 assertEquals("joedoe", parsedFilter.value());
 ```
 
@@ -48,17 +49,17 @@ enum ExampleFilterKey implements FilterKey {
 
   USER_USERNAME("username", String.class);
 
-  private String name;
+  private String key;
   private Class<String> clazz;
 
-  ExampleFilterKey(String name, Class<String> clazz) {
-    this.name = name;
+  ExampleFilterKey(String key, Class<String> clazz) {
+    this.key = key;
     this.clazz = clazz;
   }
 
   @Override
   public String key() {
-    return name;
+    return key;
   }
 
   static FilterKey fromKey(String key) {
