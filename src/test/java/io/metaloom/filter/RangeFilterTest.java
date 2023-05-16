@@ -13,7 +13,7 @@ public class RangeFilterTest extends AbstractFilterTest {
 
 	@Test
 	public void testRangeFilter() {
-		RangeFilter<NumberRangeFilterValue> filter = TestFilterKey.ARTICLE_PRICE.getKey().range(12.42d, 24.56d);
+		RangeFilter<NumberRangeFilterValue> filter = TestFilterKey.ARTICLE_PRICE.range(12.42d, 24.56d);
 		assertEquals("price[range]=12.42" + RANGE_SEPERATOR + "24.56", filter.toString());
 		assertEquals("12.42" + RANGE_SEPERATOR + "24.56", filter.value().toString());
 		assertEquals(24.56d, filter.value().getTo());

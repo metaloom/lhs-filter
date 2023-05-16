@@ -1,36 +1,32 @@
 package io.metaloom.filter.key;
 
+import java.util.Arrays;
+import java.util.List;
+
 import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.key.impl.DurationFilterKey;
 import io.metaloom.filter.key.impl.NumberFilterKey;
 import io.metaloom.filter.key.impl.SizeFilterKey;
 import io.metaloom.filter.key.impl.StringFilterKey;
-import io.metaloom.filter.value.FilterValue;
 
-public enum TestFilterKey {
+public final class TestFilterKey {
 
-	USER_USERNAME(new StringFilterKey("username")),
+	public final static StringFilterKey USER_USERNAME = new StringFilterKey("username");
 
-	ARTICLE_PRICE(new NumberFilterKey("price")),
+	public final static NumberFilterKey ARTICLE_PRICE = new NumberFilterKey("price");
 
-	FILE_SIZE(new SizeFilterKey("size")),
+	public final static SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
 
-	VIDEO_DURATION(new DurationFilterKey("duration"));
+	public final static DurationFilterKey VIDEO_DURATION = new DurationFilterKey("duration");
 
-	private FilterKey<?> key;
-
-	<T extends FilterValue> TestFilterKey(FilterKey<?> key) {
-		this.key = key;
-	}
-
-	public FilterKey<?> getKey() {
-		return key;
+	public static List<FilterKey<?>> values() {
+		return Arrays.asList(USER_USERNAME, ARTICLE_PRICE, FILE_SIZE, VIDEO_DURATION);
 	}
 
 	public static FilterKey<?> fromKey(String key) {
-		for (TestFilterKey v : values()) {
-			if (v.getKey().key().equals(key)) {
-				return v.getKey();
+		for (FilterKey<?> v : values()) {
+			if (v.key().equals(key)) {
+				return v;
 			}
 		}
 		return null;

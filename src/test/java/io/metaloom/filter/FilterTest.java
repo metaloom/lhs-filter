@@ -15,7 +15,7 @@ public class FilterTest {
 	@Test
 	public void testMultipleFilters() {
 		String line = IntStream.range(0, 3).boxed().map(i -> {
-			return TestFilterKey.USER_USERNAME.getKey().eq("joedoe_" + i).toString();
+			return TestFilterKey.USER_USERNAME.eq("joedoe_" + i).toString();
 		}).collect(Collectors.joining(","));
 
 		System.out.println(line);

@@ -16,7 +16,7 @@ public class LesserFilterTest extends AbstractFilterTest {
 
 	@Test
 	public void testDurationFilter() {
-		LesserFilter<DurationFilterValue> filter = TestFilterKey.VIDEO_DURATION.getKey().lte(Duration.of(10, ChronoUnit.MINUTES));
+		LesserFilter<DurationFilterValue> filter = TestFilterKey.VIDEO_DURATION.lte(Duration.of(10, ChronoUnit.MINUTES));
 		assertEquals(10, filter.value().getDuration().toMinutes());
 
 		LesserFilter<DurationFilterValue> parsedFilter = assertParsedFilter("duration[lte]=PT10M", filter);
@@ -25,7 +25,7 @@ public class LesserFilterTest extends AbstractFilterTest {
 
 	@Test
 	public void testNumberFilter() {
-		LesserFilter<NumberFilterValue> filter = TestFilterKey.FILE_SIZE.getKey().lte(42);
+		LesserFilter<NumberFilterValue> filter = TestFilterKey.ARTICLE_PRICE.lte(42);
 		assertEquals(42, filter.value().getNumber());
 
 		LesserFilter<NumberFilterValue> parsedFilter = assertParsedFilter("size[lte]=42", filter);

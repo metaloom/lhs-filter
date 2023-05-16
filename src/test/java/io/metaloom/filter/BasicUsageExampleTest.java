@@ -2,6 +2,7 @@ package io.metaloom.filter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class BasicUsageExampleTest {
 	public void testExample() {
 		// SNIPPET START example
 		// Construct a filter
-		EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.getKey().eq("joedoe");
+		EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
 		assertEquals("username[eq]=joedoe", filter.toString());
 
 		// Parse a filter
@@ -28,24 +29,14 @@ public class BasicUsageExampleTest {
 	}
 
 	// SNIPPET START key
-	enum ExampleFilterKey {
+	final class ExampleFilterKey {
 
-		USER_USERNAME(new StringFilterKey("username"));
-
-		private FilterKey<?> key;
-
-		ExampleFilterKey(FilterKey<?> key) {
-			this.key = key;
-		}
-
-		public FilterKey<?> getKey() {
-			return key;
-		}
+		public static final StringFilterKey USER_USERNAME = new StringFilterKey("username");
 
 		static FilterKey<?> fromKey(String key) {
-			for (ExampleFilterKey v : values()) {
-				if (v.getKey().key().equals(key)) {
-					return v.getKey();
+			for (FilterKey<?> v : Arrays.asList(USER_USERNAME)) {
+				if (v.key().equals(key)) {
+					return v;
 				}
 			}
 			return null;

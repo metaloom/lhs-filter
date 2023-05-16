@@ -15,7 +15,7 @@ public class EqualsFilterTest {
 	
 	@Test
 	public void testFilter() {
-		EqualsFilter<StringFilterValue> filter = TestFilterKey.USER_USERNAME.getKey().eq("joedoe");
+		EqualsFilter<StringFilterValue> filter = TestFilterKey.USER_USERNAME.eq("joedoe");
 		assertEquals(filter.getClass(), EqualsFilter.class);
 		String line = filter.toString();
 
