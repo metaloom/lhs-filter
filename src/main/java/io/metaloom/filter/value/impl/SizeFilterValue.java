@@ -16,4 +16,8 @@ public class SizeFilterValue extends NumberFilterValue {
 		return getNumber().longValue();
 	}
 
+	public static SizeFilterValue create(String val) {
+		return new SizeFilterValue(val);
+	}
+
 }

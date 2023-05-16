@@ -6,15 +6,18 @@ import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.value.FilterValue;
 import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.SizeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
-public interface FilterKey {
+public interface FilterKey<T extends FilterValue> {
 
 	String key();
+
+	T createValue(String valueStr);
 
 	// Equals
 

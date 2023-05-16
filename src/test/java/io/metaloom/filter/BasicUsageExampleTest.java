@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.impl.EqualsFilter;
+import io.metaloom.filter.key.impl.StringFilterKey;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
 public class BasicUsageExampleTest {
@@ -15,7 +16,7 @@ public class BasicUsageExampleTest {
 	public void testExample() {
 		// SNIPPET START example
 		// Construct a filter
-		EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
+		EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.getKey().eq("joedoe");
 		assertEquals("username[eq]=joedoe", filter.toString());
 
 		// Parse a filter
@@ -27,27 +28,24 @@ public class BasicUsageExampleTest {
 	}
 
 	// SNIPPET START key
-	enum ExampleFilterKey implements FilterKey {
+	enum ExampleFilterKey {
 
-		USER_USERNAME("username", String.class);
+		USER_USERNAME(new StringFilterKey("username"));
 
-		private String key;
-		private Class<String> clazz;
+		private FilterKey<?> key;
 
-		ExampleFilterKey(String key, Class<String> clazz) {
+		ExampleFilterKey(FilterKey<?> key) {
 			this.key = key;
-			this.clazz = clazz;
 		}
 
-		@Override
-		public String key() {
+		public FilterKey<?> getKey() {
 			return key;
 		}
 
-		static FilterKey fromKey(String key) {
-			for (FilterKey v : values()) {
-				if (v.key().equals(key)) {
-					return v;
+		static FilterKey<?> fromKey(String key) {
+			for (ExampleFilterKey v : values()) {
+				if (v.getKey().key().equals(key)) {
+					return v.getKey();
 				}
 			}
 			return null;

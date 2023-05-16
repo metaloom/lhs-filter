@@ -32,7 +32,7 @@ This library is still in early development.
 
 ```java
 // Construct a filter
-EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
+EqualsFilter<StringFilterValue> filter = ExampleFilterKey.USER_USERNAME.getKey().eq("joedoe");
 assertEquals("username[eq]=joedoe", filter.toString());
 
 // Parse a filter
@@ -45,27 +45,24 @@ assertEquals("joedoe", parsedFilter.value());
 The enum which lists all potential keys to filter by must be defined for your domain.
 
 ```java
-enum ExampleFilterKey implements FilterKey {
+enum ExampleFilterKey {
 
-  USER_USERNAME("username", String.class);
+  USER_USERNAME(new StringFilterKey("username"));
 
-  private String key;
-  private Class<String> clazz;
+  private FilterKey<?> key;
 
-  ExampleFilterKey(String key, Class<String> clazz) {
+  ExampleFilterKey(FilterKey<?> key) {
     this.key = key;
-    this.clazz = clazz;
   }
 
-  @Override
-  public String key() {
+  public FilterKey<?> getKey() {
     return key;
   }
 
-  static FilterKey fromKey(String key) {
-    for (FilterKey v : values()) {
-      if (v.key().equals(key)) {
-        return v;
+  static FilterKey<?> fromKey(String key) {
+    for (ExampleFilterKey v : values()) {
+      if (v.getKey().key().equals(key)) {
+        return v.getKey();
       }
     }
     return null;

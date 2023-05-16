@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.impl.EqualsFilter;
+import io.metaloom.filter.key.TestFilterKey;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
 public class EqualsFilterTest {
@@ -14,7 +15,7 @@ public class EqualsFilterTest {
 	
 	@Test
 	public void testFilter() {
-		EqualsFilter<StringFilterValue> filter = TestFilterKey.USER_USERNAME.eq("joedoe");
+		EqualsFilter<StringFilterValue> filter = TestFilterKey.USER_USERNAME.getKey().eq("joedoe");
 		assertEquals(filter.getClass(), EqualsFilter.class);
 		String line = filter.toString();
 
