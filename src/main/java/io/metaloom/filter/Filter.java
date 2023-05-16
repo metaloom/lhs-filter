@@ -37,9 +37,9 @@ public interface Filter<T extends FilterValue> {
 		case RangeFilter.OPERATION_KEY:
 			return new RangeFilter<>(filterKey, FilterValue.createRange(val));
 		case LesserFilter.OPERATION_KEY:
-			return new LesserFilter(filterKey, FilterValue.createNumeric(val));
+			return new LesserFilter<>(filterKey, FilterValue.createNumeric(val));
 		case GreaterFilter.OPERATION_KEY:
-			return new LesserFilter(filterKey, FilterValue.createNumeric(val));
+			return new GreaterFilter<>(filterKey, FilterValue.createNumeric(val));
 		default:
 			throw new FilterException("Unknown filter operation: " + op);
 		}

@@ -29,7 +29,7 @@ public class NumberFilterValue implements NumericFilterValue {
 			number = NumberFormat.getInstance().parse(val);
 			return new NumberFilterValue(number);
 		} catch (ParseException e) {
-			throw new FilterException("Failed to parse value " + val + "into number.", e);
+			throw new FilterException("Failed to parse value " + val + " into number.", e);
 		}
 	}
 }

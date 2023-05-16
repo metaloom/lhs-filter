@@ -9,19 +9,33 @@ import org.junit.jupiter.api.Test;
 import io.metaloom.filter.value.FilterValue;
 import io.metaloom.filter.value.impl.DateFilterValue;
 import io.metaloom.filter.value.impl.DateRangeFilterValue;
+import io.metaloom.filter.value.impl.DateTimeFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
+import io.metaloom.filter.value.impl.TimeFilterValue;
+import io.metaloom.filter.value.impl.UTCDateFilterValue;
 
 public class FilterValueTest {
 
 	@Test
 	public void testDateFilterValue() {
-		assertNotNull(DateFilterValue.create("15:00:00"));
 		assertNotNull(DateFilterValue.create("2020-07-10"));
-		assertNotNull(DateFilterValue.create("2020-07-10T15:00:00"));
+	}
 
-		DateFilterValue value = DateFilterValue.create("2020-07-10T15:00:00Z");
+	@Test
+	public void testDateTimeFilterValue() {
+		assertNotNull(DateTimeFilterValue.create("2020-07-10T15:00:00"));
+	}
+
+	@Test
+	public void testTimeFilterValue() {
+		assertNotNull(TimeFilterValue.create("15:00:00"));
+	}
+
+	@Test
+	public void testUTCDateFilterValue() {
+		UTCDateFilterValue value = UTCDateFilterValue.create("2020-07-10T15:00:00Z");
 		assertNotNull(value);
 		assertNotNull(value.getInstant());
 	}

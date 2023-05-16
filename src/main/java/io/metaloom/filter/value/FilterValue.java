@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.metaloom.filter.value.impl.DateRangeFilterValue;
+import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
@@ -24,6 +25,9 @@ public interface FilterValue {
 	}
 
 	static NumericFilterValue createNumeric(String val) {
+		if (val.startsWith("P")) {
+			return DurationFilterValue.create(val);
+		}
 		return NumberFilterValue.create(val);
 	}
 

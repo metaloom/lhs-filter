@@ -4,11 +4,11 @@ import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.value.NumericFilterValue;
 
-public class GreaterFilter extends AbstractFilter<NumericFilterValue> {
+public class GreaterFilter<T extends NumericFilterValue> extends AbstractFilter<T> {
 
 	public static final String OPERATION_KEY = "gte";
 
-	public GreaterFilter(FilterKey key, NumericFilterValue value) {
+	public GreaterFilter(FilterKey key, T value) {
 		super(key, value);
 	}
 
