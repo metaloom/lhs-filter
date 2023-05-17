@@ -36,23 +36,24 @@ public interface Filter<T extends FilterValue> {
 	private static Filter<FilterValue> parseFilterLine(String line, Function<String, FilterKey<?>> keyMapper) {
 		String key = line.substring(0, line.indexOf("["));
 		String opStr = line.substring(line.indexOf("[") + 1, line.indexOf("]"));
-		FilterOperation op = DefaultFilterOperation.fromId(opStr);
 		String val = line.substring(line.indexOf("=") + 1);
+
 		FilterKey<?> filterKey = keyMapper.apply(key);
+		FilterOperation op = () -> opStr;
 		FilterValue filterVal = filterKey.createValue(op, val);
-		switch (op) {
-		case EQUAL:
+		switch (opStr) {
+		case "eq":
 			return new EqualsFilter(filterKey, filterVal);
-		case AFTER:
+		case "after":
 			TemporalFilterValue tempValue = FilterValue.createTemporal(val);
 			return new AfterFilter(filterKey, tempValue);
-		case BEFORE:
+		case "before":
 			return new BeforeFilter(filterKey, (TemporalFilterValue) filterVal);
-		case RANGE:
+		case "range":
 			return new RangeFilter(filterKey, (RangeFilterValue) filterVal);
-		case LESSER:
+		case "lte":
 			return new LesserFilter(filterKey, (NumericFilterValue) filterVal);
-		case GREATER:
+		case "gte":
 			return new GreaterFilter(filterKey, (NumericFilterValue) filterVal);
 		default:
 			throw new FilterException("Unknown filter operation: " + op);

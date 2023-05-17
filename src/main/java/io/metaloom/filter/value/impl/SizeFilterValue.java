@@ -1,5 +1,6 @@
 package io.metaloom.filter.value.impl;
 
+import io.metaloom.filter.value.SizeFilterValueVariant;
 import io.metaloom.utils.ConvertUtils;
 
 public class SizeFilterValue extends NumberFilterValue implements SizeFilterValueVariant {

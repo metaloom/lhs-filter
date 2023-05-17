@@ -4,9 +4,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 import io.metaloom.filter.FilterException;
+import io.metaloom.filter.value.NumberFilterValueVariant;
 import io.metaloom.filter.value.NumericFilterValue;
 
-public class NumberFilterValue implements NumericFilterValue {
+public class NumberFilterValue implements NumericFilterValue, NumberFilterValueVariant {
 
 	private Number number;
 

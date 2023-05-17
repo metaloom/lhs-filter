@@ -2,7 +2,7 @@ package io.metaloom.filter.value.impl.range;
 
 import io.metaloom.filter.FilterException;
 import io.metaloom.filter.value.RangeFilterValue;
-import io.metaloom.filter.value.impl.SizeFilterValueVariant;
+import io.metaloom.filter.value.SizeFilterValueVariant;
 import io.metaloom.utils.ConvertUtils;
 
 public class SizeRangeFilterValue implements RangeFilterValue, SizeFilterValueVariant {

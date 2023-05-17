@@ -15,7 +15,7 @@ public abstract class AbstractFilter<T extends FilterValue> implements Filter<T>
 	@Override
 	public String toString() {
 		// LHS brackets format
-		return key.key() + "[" + getOperationKey() + "]=" + value();
+		return key.key() + "[" + getOperationKey().id() + "]=" + value();
 	}
 
 	@Override

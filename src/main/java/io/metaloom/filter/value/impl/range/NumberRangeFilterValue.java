@@ -3,9 +3,10 @@ package io.metaloom.filter.value.impl.range;
 import java.text.NumberFormat;
 
 import io.metaloom.filter.FilterException;
+import io.metaloom.filter.value.NumberFilterValueVariant;
 import io.metaloom.filter.value.RangeFilterValue;
 
-public class NumberRangeFilterValue implements RangeFilterValue {
+public class NumberRangeFilterValue implements RangeFilterValue,NumberFilterValueVariant {
 
 	private final Number from;
 	private final Number to;

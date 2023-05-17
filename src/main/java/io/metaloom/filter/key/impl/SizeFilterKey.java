@@ -6,8 +6,8 @@ import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.operation.FilterOperation;
+import io.metaloom.filter.value.SizeFilterValueVariant;
 import io.metaloom.filter.value.impl.SizeFilterValue;
-import io.metaloom.filter.value.impl.SizeFilterValueVariant;
 import io.metaloom.filter.value.impl.range.SizeRangeFilterValue;
 
 public class SizeFilterKey extends AbstractFilterKey<SizeFilterValueVariant> {
