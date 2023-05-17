@@ -2,7 +2,7 @@ package io.metaloom.filter.value.impl;
 
 import io.metaloom.utils.ConvertUtils;
 
-public class SizeFilterValue extends NumberFilterValue {
+public class SizeFilterValue extends NumberFilterValue implements SizeFilterValueVariant {
 
 	public SizeFilterValue(String humanReadableSize) {
 		super(ConvertUtils.fromHumanSize(humanReadableSize));

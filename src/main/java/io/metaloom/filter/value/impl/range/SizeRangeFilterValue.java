@@ -2,10 +2,10 @@ package io.metaloom.filter.value.impl.range;
 
 import io.metaloom.filter.FilterException;
 import io.metaloom.filter.value.RangeFilterValue;
-import io.metaloom.filter.value.impl.SizeFilterValue;
+import io.metaloom.filter.value.impl.SizeFilterValueVariant;
 import io.metaloom.utils.ConvertUtils;
 
-public class SizeRangeFilterValue implements RangeFilterValue {
+public class SizeRangeFilterValue implements RangeFilterValue, SizeFilterValueVariant {
 
 	private final long from;
 	private final long to;
