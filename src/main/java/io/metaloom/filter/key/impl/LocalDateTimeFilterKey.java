@@ -8,7 +8,8 @@ import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
-import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
+import io.metaloom.filter.operation.FilterOperation;
+import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
 
 public class LocalDateTimeFilterKey extends AbstractFilterKey<LocalDateTimeFilterValue> {
 
@@ -17,7 +18,7 @@ public class LocalDateTimeFilterKey extends AbstractFilterKey<LocalDateTimeFilte
 	}
 
 	@Override
-	public LocalDateTimeFilterValue createValue(String valueStr) {
+	public LocalDateTimeFilterValue createValue(FilterOperation op, String valueStr) {
 		return LocalDateTimeFilterValue.create(valueStr);
 	}
 

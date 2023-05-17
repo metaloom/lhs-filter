@@ -1,4 +1,4 @@
-package io.metaloom.filter.value.impl;
+package io.metaloom.filter.value.impl.range;
 
 import java.text.NumberFormat;
 

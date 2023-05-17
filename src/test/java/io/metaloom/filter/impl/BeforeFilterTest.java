@@ -2,22 +2,17 @@ package io.metaloom.filter.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.AbstractFilterTest;
 import io.metaloom.filter.key.TestFilterKey;
-import io.metaloom.filter.value.impl.DurationFilterValue;
-import io.metaloom.filter.value.impl.LocalDateFilterValue;
-import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
-import io.metaloom.filter.value.impl.LocalTimeFilterValue;
-import io.metaloom.filter.value.impl.NumberFilterValue;
-import io.metaloom.filter.value.impl.SizeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 
 public class BeforeFilterTest extends AbstractFilterTest {
 

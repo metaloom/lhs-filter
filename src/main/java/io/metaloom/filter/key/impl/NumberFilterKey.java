@@ -5,8 +5,9 @@ import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
+import io.metaloom.filter.operation.FilterOperation;
 import io.metaloom.filter.value.impl.NumberFilterValue;
-import io.metaloom.filter.value.impl.NumberRangeFilterValue;
+import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
 
 public class NumberFilterKey extends AbstractFilterKey<NumberFilterValue> {
 
@@ -15,7 +16,7 @@ public class NumberFilterKey extends AbstractFilterKey<NumberFilterValue> {
 	}
 
 	@Override
-	public NumberFilterValue createValue(String valueStr) {
+	public NumberFilterValue createValue(FilterOperation op, String valueStr) {
 		return NumberFilterValue.create(valueStr);
 	}
 

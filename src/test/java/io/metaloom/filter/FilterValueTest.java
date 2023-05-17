@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.value.FilterValue;
-import io.metaloom.filter.value.impl.LocalDateFilterValue;
-import io.metaloom.filter.value.impl.DateRangeFilterValue;
-import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
-import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
-import io.metaloom.filter.value.impl.LocalTimeFilterValue;
+import io.metaloom.filter.value.impl.range.DateRangeFilterValue;
+import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 import io.metaloom.filter.value.impl.InstantFilterValue;
 
 public class FilterValueTest {

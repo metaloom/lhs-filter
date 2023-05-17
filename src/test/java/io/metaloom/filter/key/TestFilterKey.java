@@ -27,6 +27,8 @@ public final class TestFilterKey {
 	public final static SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
 
 	public final static DurationFilterKey VIDEO_DURATION = new DurationFilterKey("duration");
+	
+	//public final static RangeFilterKey VIDEO_DURATION_RANGE = new RangeFilterKey("duration");
 
 	public static List<FilterKey<?>> values() {
 		return Arrays.asList(USER_USERNAME, ARTICLE_PRICE, FILE_SIZE, VIDEO_DURATION, DUE_DATE, DUE_TIME, DUE);

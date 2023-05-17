@@ -2,12 +2,18 @@ package io.metaloom.filter.impl;
 
 import static io.metaloom.filter.value.RangeFilterValue.RANGE_SEPERATOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.AbstractFilterTest;
 import io.metaloom.filter.key.TestFilterKey;
-import io.metaloom.filter.value.impl.NumberRangeFilterValue;
+import io.metaloom.filter.value.impl.range.DurationRangeFilterValue;
+import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
+import io.metaloom.filter.value.impl.range.SizeRangeFilterValue;
 
 public class RangeFilterTest extends AbstractFilterTest {
 
@@ -23,44 +29,53 @@ public class RangeFilterTest extends AbstractFilterTest {
 		assertEquals(24.56d, parsedFilter.value().getTo());
 	}
 
-	@Test
 	@Override
 	public void testStringFilterValue() {
 		// Does not apply
 	}
 
-	@Test
 	@Override
 	public void testDurationFilterValue() {
-		// TODO Auto-generated method stub
+		RangeFilter<DurationRangeFilterValue> filter = TestFilterKey.VIDEO_DURATION.range(Duration.of(10, ChronoUnit.MINUTES),
+			Duration.of(20, ChronoUnit.MINUTES));
+		assertEquals(10, filter.value().getFrom().toMinutes());
+		assertEquals(20, filter.value().getTo().toMinutes());
+
+		RangeFilter<DurationRangeFilterValue> parsedFilter = assertParsedFilter("duration[eq]=PT10M", filter);
+		assertEquals(10, parsedFilter.value().getFrom().toMinutes());
+		assertEquals(20, parsedFilter.value().getTo().toMinutes());
 
 	}
 
 	@Test
 	@Override
 	public void testSizeFilterValue() {
-		// TODO Auto-generated method stub
+		RangeFilter<SizeRangeFilterValue> filter = TestFilterKey.FILE_SIZE.range("12GB", "200GB");
+		assertEquals(12L * 1024 * 1024 * 1024, filter.value().getFrom());
+		assertEquals(200L * 1024 * 1024 * 1024, filter.value().getTo());
 
+		RangeFilter<SizeRangeFilterValue> parsedFilter = assertParsedFilter("size[range]=12GB_200GB", filter);
+		assertEquals(12L * 1024 * 1024 * 1024, parsedFilter.value().getFrom());
+		assertEquals(200L * 1024 * 1024 * 1024, parsedFilter.value().getTo());
 	}
 
 	@Test
 	@Override
 	public void testLocalTimeFilterValue() {
-		// TODO Auto-generated method stub
-
+		fail("Not yet implemented");
 	}
 
 	@Test
 	@Override
 	public void testLocalDateTimeFilterValue() {
-		// TODO Auto-generated method stub
+		fail("Not yet implemented");
 
 	}
 
 	@Test
 	@Override
 	public void testLocalDateFilterValue() {
-		// TODO Auto-generated method stub
+		fail("Not yet implemented");
 
 	}
 

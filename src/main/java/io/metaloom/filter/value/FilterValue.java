@@ -3,15 +3,15 @@ package io.metaloom.filter.value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.metaloom.filter.value.impl.DateRangeFilterValue;
 import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.InstantFilterValue;
-import io.metaloom.filter.value.impl.LocalDateFilterValue;
-import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
-import io.metaloom.filter.value.impl.LocalTimeFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
-import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
+import io.metaloom.filter.value.impl.range.DateRangeFilterValue;
+import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 
 public interface FilterValue {
 

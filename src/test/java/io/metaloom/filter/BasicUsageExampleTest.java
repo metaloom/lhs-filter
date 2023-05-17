@@ -15,9 +15,9 @@ import io.metaloom.filter.key.impl.LocalTimeFilterKey;
 import io.metaloom.filter.key.impl.SizeFilterKey;
 import io.metaloom.filter.key.impl.StringFilterKey;
 import io.metaloom.filter.value.FilterValue;
-import io.metaloom.filter.value.impl.LocalTimeFilterValue;
 import io.metaloom.filter.value.impl.SizeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
+import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 
 public class BasicUsageExampleTest {
 

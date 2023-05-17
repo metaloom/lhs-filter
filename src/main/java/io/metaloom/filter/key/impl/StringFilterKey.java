@@ -2,6 +2,7 @@ package io.metaloom.filter.key.impl;
 
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
+import io.metaloom.filter.operation.FilterOperation;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
 public class StringFilterKey extends AbstractFilterKey<StringFilterValue> {
@@ -11,7 +12,7 @@ public class StringFilterKey extends AbstractFilterKey<StringFilterValue> {
 	}
 
 	@Override
-	public StringFilterValue createValue(String valueStr) {
+	public StringFilterValue createValue(FilterOperation range, String valueStr) {
 		return StringFilterValue.create(valueStr);
 	}
 

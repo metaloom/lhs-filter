@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import io.metaloom.filter.AbstractFilterTest;
 import io.metaloom.filter.key.TestFilterKey;
 import io.metaloom.filter.value.impl.DurationFilterValue;
-import io.metaloom.filter.value.impl.LocalDateFilterValue;
-import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
-import io.metaloom.filter.value.impl.LocalTimeFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.SizeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
+import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
+import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 
 public class LesserFilterTest extends AbstractFilterTest {
 

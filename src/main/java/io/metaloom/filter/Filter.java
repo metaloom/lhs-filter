@@ -1,5 +1,12 @@
 package io.metaloom.filter;
 
+import static io.metaloom.filter.operation.DefaultFilterOperation.AFTER;
+import static io.metaloom.filter.operation.DefaultFilterOperation.BEFORE;
+import static io.metaloom.filter.operation.DefaultFilterOperation.EQUAL;
+import static io.metaloom.filter.operation.DefaultFilterOperation.GREATER;
+import static io.metaloom.filter.operation.DefaultFilterOperation.LESSER;
+import static io.metaloom.filter.operation.DefaultFilterOperation.RANGE;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -12,6 +19,8 @@ import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.operation.DefaultFilterOperation;
+import io.metaloom.filter.operation.FilterOperation;
 import io.metaloom.filter.value.FilterValue;
 import io.metaloom.filter.value.NumericFilterValue;
 import io.metaloom.filter.value.RangeFilterValue;
@@ -26,23 +35,24 @@ public interface Filter<T extends FilterValue> {
 
 	private static Filter<FilterValue> parseFilterLine(String line, Function<String, FilterKey<?>> keyMapper) {
 		String key = line.substring(0, line.indexOf("["));
-		String op = line.substring(line.indexOf("[") + 1, line.indexOf("]"));
+		String opStr = line.substring(line.indexOf("[") + 1, line.indexOf("]"));
+		FilterOperation op = DefaultFilterOperation.fromId(opStr);
 		String val = line.substring(line.indexOf("=") + 1);
 		FilterKey<?> filterKey = keyMapper.apply(key);
-		FilterValue filterVal = filterKey.createValue(val);
+		FilterValue filterVal = filterKey.createValue(op, val);
 		switch (op) {
-		case EqualsFilter.OPERATION_KEY:
+		case EQUAL:
 			return new EqualsFilter(filterKey, filterVal);
-		case AfterFilter.OPERATION_KEY:
+		case AFTER:
 			TemporalFilterValue tempValue = FilterValue.createTemporal(val);
 			return new AfterFilter(filterKey, tempValue);
-		case BeforeFilter.OPERATION_KEY:
+		case BEFORE:
 			return new BeforeFilter(filterKey, (TemporalFilterValue) filterVal);
-		case RangeFilter.OPERATION_KEY:
+		case RANGE:
 			return new RangeFilter(filterKey, (RangeFilterValue) filterVal);
-		case LesserFilter.OPERATION_KEY:
+		case LESSER:
 			return new LesserFilter(filterKey, (NumericFilterValue) filterVal);
-		case GreaterFilter.OPERATION_KEY:
+		case GREATER:
 			return new GreaterFilter(filterKey, (NumericFilterValue) filterVal);
 		default:
 			throw new FilterException("Unknown filter operation: " + op);
@@ -53,6 +63,6 @@ public interface Filter<T extends FilterValue> {
 
 	T value();
 
-	String getOperationKey();
+	FilterOperation getOperationKey();
 
 }
