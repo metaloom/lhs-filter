@@ -16,6 +16,12 @@ public class SizeFilterValue extends NumberFilterValue {
 		return getNumber().longValue();
 	}
 
+	@Override
+	public String toString() {
+		String valueLine = ConvertUtils.toHumanSize(getNumber().longValue());
+		return valueLine.replaceAll("\s", "");
+	}
+
 	public static SizeFilterValue create(String val) {
 		return new SizeFilterValue(val);
 	}

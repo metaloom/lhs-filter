@@ -7,35 +7,35 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.value.FilterValue;
-import io.metaloom.filter.value.impl.DateFilterValue;
+import io.metaloom.filter.value.impl.LocalDateFilterValue;
 import io.metaloom.filter.value.impl.DateRangeFilterValue;
-import io.metaloom.filter.value.impl.DateTimeFilterValue;
+import io.metaloom.filter.value.impl.LocalDateTimeFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.StringFilterValue;
-import io.metaloom.filter.value.impl.TimeFilterValue;
-import io.metaloom.filter.value.impl.UTCDateFilterValue;
+import io.metaloom.filter.value.impl.LocalTimeFilterValue;
+import io.metaloom.filter.value.impl.InstantFilterValue;
 
 public class FilterValueTest {
 
 	@Test
 	public void testDateFilterValue() {
-		assertNotNull(DateFilterValue.create("2020-07-10"));
+		assertNotNull(LocalDateFilterValue.create("2020-07-10"));
 	}
 
 	@Test
 	public void testDateTimeFilterValue() {
-		assertNotNull(DateTimeFilterValue.create("2020-07-10T15:00:00"));
+		assertNotNull(LocalDateTimeFilterValue.create("2020-07-10T15:00:00"));
 	}
 
 	@Test
 	public void testTimeFilterValue() {
-		assertNotNull(TimeFilterValue.create("15:00:00"));
+		assertNotNull(LocalTimeFilterValue.create("15:00:00"));
 	}
 
 	@Test
 	public void testUTCDateFilterValue() {
-		UTCDateFilterValue value = UTCDateFilterValue.create("2020-07-10T15:00:00Z");
+		InstantFilterValue value = InstantFilterValue.create("2020-07-10T15:00:00Z");
 		assertNotNull(value);
 		assertNotNull(value.getInstant());
 	}

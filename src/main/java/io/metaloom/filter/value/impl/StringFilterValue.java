@@ -10,6 +10,10 @@ public class StringFilterValue implements FilterValue {
 		this.val = val;
 	}
 
+	public String getText() {
+		return val;
+	}
+
 	@Override
 	public String toString() {
 		return val.toString();

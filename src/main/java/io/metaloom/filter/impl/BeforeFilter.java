@@ -4,11 +4,11 @@ import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.value.TemporalFilterValue;
 
-public class BeforeFilter extends AbstractFilter<TemporalFilterValue> {
+public class BeforeFilter<T extends TemporalFilterValue> extends AbstractFilter<T> {
 
 	public static final String OPERATION_KEY = "before";
 
-	public BeforeFilter(FilterKey key, TemporalFilterValue value) {
+	public BeforeFilter(FilterKey<T> key, T value) {
 		super(key, value);
 	}
 

@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.key.TestFilterKey;
+import io.metaloom.filter.value.FilterValue;
 
 public class FilterTest {
 
@@ -20,7 +21,7 @@ public class FilterTest {
 
 		System.out.println(line);
 
-		List<Filter<?>> parsedFilter = Filter.parse(line, TestFilterKey::fromKey);
+		List<Filter<FilterValue>> parsedFilter = Filter.parse(line, TestFilterKey::fromKey);
 		assertEquals(3, parsedFilter.size());
 		assertEquals("joedoe_2", parsedFilter.get(2).value().toString());
 	}

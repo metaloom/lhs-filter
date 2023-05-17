@@ -8,7 +8,7 @@ public class GreaterFilter<T extends NumericFilterValue> extends AbstractFilter<
 
 	public static final String OPERATION_KEY = "gte";
 
-	public GreaterFilter(FilterKey key, T value) {
+	public GreaterFilter(FilterKey<T> key, T value) {
 		super(key, value);
 	}
 

@@ -24,7 +24,7 @@ public class NumberFilterKey extends AbstractFilterKey<NumberFilterValue> {
 	}
 
 	public RangeFilter<NumberRangeFilterValue> range(double from, double to) {
-		return new RangeFilter<>(this, new NumberRangeFilterValue(from, to));
+		return new RangeFilter(this, new NumberRangeFilterValue(from, to));
 	}
 
 	public LesserFilter<NumberFilterValue> lte(Number number) {

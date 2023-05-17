@@ -8,7 +8,7 @@ public class EqualsFilter<T extends FilterValue> extends AbstractFilter<T> {
 
 	public static final String OPERATION_KEY = "eq";
 
-	public EqualsFilter(FilterKey<?> key, T value) {
+	public EqualsFilter(FilterKey<T> key, T value) {
 		super(key, value);
 	}
 

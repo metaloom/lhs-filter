@@ -3,13 +3,14 @@ package io.metaloom.filter.value.impl;
 import java.time.LocalDate;
 
 import io.metaloom.filter.FilterException;
+import io.metaloom.filter.value.NumericFilterValue;
 import io.metaloom.filter.value.TemporalFilterValue;
 
-public class DateFilterValue implements TemporalFilterValue {
+public class LocalDateFilterValue implements TemporalFilterValue, NumericFilterValue {
 
 	private LocalDate date;
 
-	public DateFilterValue(LocalDate date) {
+	public LocalDateFilterValue(LocalDate date) {
 		this.date = date;
 	}
 
@@ -17,10 +18,15 @@ public class DateFilterValue implements TemporalFilterValue {
 		return date;
 	}
 
-	public static DateFilterValue create(String val) {
+	@Override
+	public String toString() {
+		return getDate().toString();
+	}
+
+	public static LocalDateFilterValue create(String val) {
 		try {
 			LocalDate date = LocalDate.parse(val);
-			return new DateFilterValue(date);
+			return new LocalDateFilterValue(date);
 		} catch (Exception e) {
 			throw new FilterException("The value " + val + " could not be parsed into a date", e);
 		}

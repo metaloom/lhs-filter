@@ -8,7 +8,7 @@ public class RangeFilter<T extends RangeFilterValue> extends AbstractFilter<T> {
 
 	public static final String OPERATION_KEY = "range";
 
-	public RangeFilter(FilterKey key, T value) {
+	public RangeFilter(FilterKey<T> key, T value) {
 		super(key, value);
 	}
 

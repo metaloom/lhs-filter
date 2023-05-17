@@ -8,7 +8,7 @@ public class LesserFilter<T extends NumericFilterValue> extends AbstractFilter<T
 
 	public static final String OPERATION_KEY = "lte";
 
-	public LesserFilter(FilterKey key, T value) {
+	public LesserFilter(FilterKey<T> key, T value) {
 		super(key, value);
 	}
 

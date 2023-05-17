@@ -5,11 +5,11 @@ import java.time.Instant;
 import io.metaloom.filter.FilterException;
 import io.metaloom.filter.value.TemporalFilterValue;
 
-public class UTCDateFilterValue implements TemporalFilterValue {
+public class InstantFilterValue implements TemporalFilterValue {
 
 	private Instant instant;
 
-	public UTCDateFilterValue(Instant instant) {
+	public InstantFilterValue(Instant instant) {
 		this.instant = instant;
 	}
 
@@ -17,10 +17,10 @@ public class UTCDateFilterValue implements TemporalFilterValue {
 		return instant;
 	}
 
-	public static UTCDateFilterValue create(String val) {
+	public static InstantFilterValue create(String val) {
 		try {
 			Instant instant = Instant.parse(val);
-			return new UTCDateFilterValue(instant);
+			return new InstantFilterValue(instant);
 		} catch (Exception e) {
 			throw new FilterException("The value " + val + " could not be parsed into a ISO8601 UTC time", e);
 		}
