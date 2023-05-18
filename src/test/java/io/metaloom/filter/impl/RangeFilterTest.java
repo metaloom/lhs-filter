@@ -20,40 +20,46 @@ public class RangeFilterTest extends AbstractFilterTest {
 	@Test
 	@Override
 	public void testNumberFilterValue() {
-		RangeFilter<NumberRangeFilterValue> filter = TestFilterKey.ARTICLE_PRICE.range(12.42d, 24.56d);
+		RangeFilter filter = TestFilterKey.ARTICLE_PRICE.range(12.42d, 24.56d);
 		assertEquals("price[range]=12.42" + RANGE_SEPERATOR + "24.56", filter.toString());
 		assertEquals("12.42" + RANGE_SEPERATOR + "24.56", filter.value().toString());
-		assertEquals(12.42d, filter.value().getFrom());
-		assertEquals(24.56d, filter.value().getTo());
+		NumberRangeFilterValue value = filter.value();
+		assertEquals(12.42d, value.getFrom());
+		assertEquals(24.56d, value.getTo());
 
-		RangeFilter<NumberRangeFilterValue> parsedFilter = assertParsedFilter("price[range]=12.42_24.56", filter);
-		assertEquals(12.42d, parsedFilter.value().getFrom());
-		assertEquals(24.56d, parsedFilter.value().getTo());
+		RangeFilter parsedFilter = assertParsedFilter("price[range]=12.42_24.56", filter);
+		NumberRangeFilterValue parsedValue = parsedFilter.value();
+		assertEquals(12.42d, parsedValue.getFrom());
+		assertEquals(24.56d, parsedValue.getTo());
 	}
 
 	@Override
 	public void testDurationFilterValue() {
-		RangeFilter<DurationRangeFilterValue> filter = TestFilterKey.VIDEO_DURATION.range(Duration.of(10, ChronoUnit.MINUTES),
+		RangeFilter filter = TestFilterKey.VIDEO_DURATION.range(Duration.of(10, ChronoUnit.MINUTES),
 			Duration.of(20, ChronoUnit.MINUTES));
-		assertEquals(10, filter.value().getFrom().toMinutes());
-		assertEquals(20, filter.value().getTo().toMinutes());
+		DurationRangeFilterValue value = filter.value();
+		assertEquals(10, value.getFrom().toMinutes());
+		assertEquals(20, value.getTo().toMinutes());
 
-		RangeFilter<DurationRangeFilterValue> parsedFilter = assertParsedFilter("duration[eq]=PT10M", filter);
-		assertEquals(10, parsedFilter.value().getFrom().toMinutes());
-		assertEquals(20, parsedFilter.value().getTo().toMinutes());
+		RangeFilter parsedFilter = assertParsedFilter("duration[eq]=PT10M", filter);
+		DurationRangeFilterValue parsedValue = parsedFilter.value();
+		assertEquals(10, parsedValue.getFrom().toMinutes());
+		assertEquals(20, parsedValue.getTo().toMinutes());
 
 	}
 
 	@Test
 	@Override
 	public void testSizeFilterValue() {
-		RangeFilter<SizeRangeFilterValue> filter = TestFilterKey.FILE_SIZE.range("12GB", "200GB");
-		assertEquals(12L * 1024 * 1024 * 1024, filter.value().getFrom());
-		assertEquals(200L * 1024 * 1024 * 1024, filter.value().getTo());
+		RangeFilter filter = TestFilterKey.FILE_SIZE.range("12GB", "200GB");
+		SizeRangeFilterValue value = filter.value();
+		assertEquals(12L * 1024 * 1024 * 1024, value.getFrom());
+		assertEquals(200L * 1024 * 1024 * 1024, value.getTo());
 
-		RangeFilter<SizeRangeFilterValue> parsedFilter = assertParsedFilter("size[range]=12GB_200GB", filter);
-		assertEquals(12L * 1024 * 1024 * 1024, parsedFilter.value().getFrom());
-		assertEquals(200L * 1024 * 1024 * 1024, parsedFilter.value().getTo());
+		RangeFilter parsedFilter = assertParsedFilter("size[range]=12GB_200GB", filter);
+		SizeRangeFilterValue parsedValue = parsedFilter.value();
+		assertEquals(12L * 1024 * 1024 * 1024, parsedValue.getFrom());
+		assertEquals(200L * 1024 * 1024 * 1024, parsedValue.getTo());
 	}
 
 	@Test

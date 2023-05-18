@@ -1,9 +1,8 @@
 package io.metaloom.filter.key;
 
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.value.FilterValue;
 
-public abstract class AbstractFilterKey<T extends FilterValue> implements FilterKey<T> {
+public abstract class AbstractFilterKey implements FilterKey {
 
 	private String key;
 

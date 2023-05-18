@@ -2,18 +2,24 @@ package io.metaloom.filter.impl;
 
 import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.operation.FilterOperation;
-import io.metaloom.filter.value.TemporalFilterValue;
+import io.metaloom.filter.value.FilterValue;
 
-public class BeforeFilter<T extends TemporalFilterValue> extends AbstractFilter<T> {
+public class BeforeFilter extends AbstractFilter {
 
-	public BeforeFilter(FilterKey<T> key, T value) {
+	public BeforeFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
 	@Override
-	public FilterOperation getOperationKey() {
-		return () -> "before";
+	public String getOperationKey() {
+		return "before";
 	}
 
+	// TemporalFilterValue tempValue = FilterValue.createTemporal(val);
+	
+
+	public static BeforeFilter parse(FilterKey filterKey, String op, String val) {
+		FilterValue filterVal = filterKey.createValue(op, val);
+		return new BeforeFilter(filterKey, filterVal);
+	}
 }

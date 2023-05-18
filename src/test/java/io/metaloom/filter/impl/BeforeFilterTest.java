@@ -39,31 +39,37 @@ public class BeforeFilterTest extends AbstractFilterTest {
 	@Test
 	@Override
 	public void testLocalTimeFilterValue() {
-		BeforeFilter<LocalTimeFilterValue> filter = TestFilterKey.DUE_TIME.before(LocalTime.parse("13:37"));
-		assertEquals("13:37", filter.value().getTime().toString());
+		BeforeFilter filter = TestFilterKey.DUE_TIME.before(LocalTime.parse("13:37"));
+		LocalTimeFilterValue value = filter.value();
+		assertEquals("13:37", value.getTime().toString());
 
-		BeforeFilter<LocalTimeFilterValue> parsedFilter = assertParsedFilter("due_time[before]=13:37", filter);
-		assertEquals("13:37", parsedFilter.value().getTime().toString());
+		BeforeFilter parsedFilter = assertParsedFilter("due_time[before]=13:37", filter);
+		LocalTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("13:37", parsedValue.getTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateTimeFilterValue() {
-		BeforeFilter<LocalDateTimeFilterValue> filter = TestFilterKey.DUE.before(LocalDateTime.parse("1970-12-20T13:37"));
-		assertEquals("1970-12-20T13:37", filter.value().getDateTime().toString());
+		BeforeFilter filter = TestFilterKey.DUE.before(LocalDateTime.parse("1970-12-20T13:37"));
+		LocalDateTimeFilterValue value = filter.value();
+		assertEquals("1970-12-20T13:37", value.getDateTime().toString());
 
-		BeforeFilter<LocalDateTimeFilterValue> parsedFilter = assertParsedFilter("due[before]=1970-12-20T13:37", filter);
-		assertEquals("1970-12-20T13:37", parsedFilter.value().getDateTime().toString());
+		BeforeFilter parsedFilter = assertParsedFilter("due[before]=1970-12-20T13:37", filter);
+		LocalDateTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20T13:37", parsedValue.getDateTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateFilterValue() {
-		BeforeFilter<LocalDateFilterValue> filter = TestFilterKey.DUE_DATE.before(LocalDate.parse("1970-12-20"));
-		assertEquals("1970-12-20", filter.value().getDate().toString());
+		BeforeFilter filter = TestFilterKey.DUE_DATE.before(LocalDate.parse("1970-12-20"));
+		LocalDateFilterValue value = filter.value();
+		assertEquals("1970-12-20", value.getDate().toString());
 
-		BeforeFilter<LocalDateFilterValue> parsedFilter = assertParsedFilter("due_date[before]=1970-12-20", filter);
-		assertEquals("1970-12-20", parsedFilter.value().getDate().toString());
+		BeforeFilter parsedFilter = assertParsedFilter("due_date[before]=1970-12-20", filter);
+		LocalDateFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20", parsedValue.getDate().toString());
 	}
 
 }

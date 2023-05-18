@@ -2,12 +2,12 @@ package io.metaloom.filter;
 
 import io.metaloom.filter.value.FilterValue;
 
-public abstract class AbstractFilter<T extends FilterValue> implements Filter<T> {
+public abstract class AbstractFilter implements Filter {
 
-	private FilterKey<T> key;
-	private T value;
+	private FilterKey key;
+	private FilterValue value;
 
-	public AbstractFilter(FilterKey<T> key,  T value) {
+	public AbstractFilter(FilterKey key,  FilterValue value) {
 		this.key = key;
 		this.value = value;
 	}
@@ -15,17 +15,18 @@ public abstract class AbstractFilter<T extends FilterValue> implements Filter<T>
 	@Override
 	public String toString() {
 		// LHS brackets format
-		return key.key() + "[" + getOperationKey().id() + "]=" + value();
+		return key.key() + "[" + getOperationKey() + "]=" + value();
 	}
 
 	@Override
-	public FilterKey<T> filterKey() {
+	public FilterKey filterKey() {
 		return key;
 	}
 
 	@Override
-	public T value() {
-		return value;
+	@SuppressWarnings("unchecked")
+	public <T extends FilterValue> T value() {
+		return (T) value;
 	}
 
 }

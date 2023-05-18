@@ -2,18 +2,22 @@ package io.metaloom.filter.impl;
 
 import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.operation.FilterOperation;
-import io.metaloom.filter.value.NumericFilterValue;
+import io.metaloom.filter.value.FilterValue;
 
-public class LesserFilter<T extends NumericFilterValue> extends AbstractFilter<T> {
+public class LesserFilter extends AbstractFilter {
 
-	public LesserFilter(FilterKey<T> key, T value) {
+	public LesserFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
 	@Override
-	public FilterOperation getOperationKey() {
-		return () -> "lte";
+	public String getOperationKey() {
+		return "lte";
+	}
+
+	public static LesserFilter parse(FilterKey filterKey, String op, String val) {
+		FilterValue filterVal = filterKey.createValue(op, val);
+		return new LesserFilter(filterKey, filterVal);
 	}
 
 }

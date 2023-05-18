@@ -25,71 +25,85 @@ public class EqualsFilterTest extends AbstractFilterTest {
 	@Test
 	@Override
 	public void testStringFilterValue() {
-		EqualsFilter<StringFilterValue> filter = TestFilterKey.USER_USERNAME.eq("joedoe");
-		assertEquals("joedoe", filter.value().getText());
+		EqualsFilter filter = TestFilterKey.USER_USERNAME.eq("joedoe");
+		StringFilterValue value = filter.value();
+		assertEquals("joedoe", value.getText());
 
-		EqualsFilter<StringFilterValue> parsedFilter = assertParsedFilter("username[eq]=joedoe", filter);
-		assertEquals("joedoe", parsedFilter.value().getText());
+		EqualsFilter parsedFilter = assertParsedFilter("username[eq]=joedoe", filter);
+		StringFilterValue parsedValue = parsedFilter.value();
+		assertEquals("joedoe", parsedValue.getText());
 	}
 
 	@Test
 	@Override
 	public void testDurationFilterValue() {
-		EqualsFilter<DurationFilterValue> filter = TestFilterKey.VIDEO_DURATION.eq(Duration.of(10, ChronoUnit.MINUTES));
-		assertEquals(10, filter.value().getDuration().toMinutes());
+		EqualsFilter filter = TestFilterKey.VIDEO_DURATION.eq(Duration.of(10, ChronoUnit.MINUTES));
+		DurationFilterValue value = filter.value();
+		assertEquals(10, value.getDuration().toMinutes());
 
-		EqualsFilter<DurationFilterValue> parsedFilter = assertParsedFilter("duration[eq]=PT10M", filter);
-		assertEquals(10, parsedFilter.value().getDuration().toMinutes());
+		EqualsFilter parsedFilter = assertParsedFilter("duration[eq]=PT10M", filter);
+		DurationFilterValue parsedValue = parsedFilter.value();
+		assertEquals(10, parsedValue.getDuration().toMinutes());
 	}
 
 	@Test
 	@Override
 	public void testSizeFilterValue() {
-		EqualsFilter<SizeFilterValue> filter = TestFilterKey.FILE_SIZE.eq("10GB");
-		assertEquals(10L * 1024 * 1024 * 1024, filter.value().getNumber());
+		EqualsFilter filter = TestFilterKey.FILE_SIZE.eq("10GB");
+		SizeFilterValue value = filter.value();
+		assertEquals(10L * 1024 * 1024 * 1024, value.getNumber());
 
-		EqualsFilter<SizeFilterValue> parsedFilter = assertParsedFilter("size[eq]=10GB", filter);
-		assertEquals(10L * 1024 * 1024 * 1024, parsedFilter.value().getNumber().longValue());
+		EqualsFilter parsedFilter = assertParsedFilter("size[eq]=10GB", filter);
+		NumberFilterValue parsedValue = parsedFilter.value();
+		assertEquals(10L * 1024 * 1024 * 1024, parsedValue.getNumber().longValue());
 	}
 
 	@Test
 	@Override
 	public void testNumberFilterValue() {
-		EqualsFilter<NumberFilterValue> filter = TestFilterKey.ARTICLE_PRICE.eq(42);
-		assertEquals(42, filter.value().getNumber());
+		EqualsFilter filter = TestFilterKey.ARTICLE_PRICE.eq(42);
+		NumberFilterValue value = filter.value();
+		assertEquals(42, value.getNumber());
 
-		EqualsFilter<NumberFilterValue> parsedFilter = assertParsedFilter("price[eq]=42", filter);
-		assertEquals(42, parsedFilter.value().getNumber().longValue());
+		EqualsFilter parsedFilter = assertParsedFilter("price[eq]=42", filter);
+		NumberFilterValue parsedValue = parsedFilter.value();
+		assertEquals(42, parsedValue.getNumber().longValue());
 	}
 
 	@Test
 	@Override
 	public void testLocalTimeFilterValue() {
-		EqualsFilter<LocalTimeFilterValue> filter = TestFilterKey.DUE_TIME.eq(LocalTime.parse("13:37"));
-		assertEquals("13:37", filter.value().getTime().toString());
+		EqualsFilter filter = TestFilterKey.DUE_TIME.eq(LocalTime.parse("13:37"));
+		LocalTimeFilterValue value = filter.value();
+		assertEquals("13:37", value.getTime().toString());
 
-		EqualsFilter<LocalTimeFilterValue> parsedFilter = assertParsedFilter("due_time[eq]=13:37", filter);
-		assertEquals("13:37", parsedFilter.value().getTime().toString());
+		EqualsFilter parsedFilter = assertParsedFilter("due_time[eq]=13:37", filter);
+		LocalTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("13:37", parsedValue.getTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateTimeFilterValue() {
-		EqualsFilter<LocalDateTimeFilterValue> filter = TestFilterKey.DUE.eq(LocalDateTime.parse("1970-12-20T13:37"));
-		assertEquals("1970-12-20T13:37", filter.value().getDateTime().toString());
+		EqualsFilter filter = TestFilterKey.DUE.eq(LocalDateTime.parse("1970-12-20T13:37"));
+		LocalDateTimeFilterValue value = filter.value();
+		assertEquals("1970-12-20T13:37", value.getDateTime().toString());
 
-		EqualsFilter<LocalDateTimeFilterValue> parsedFilter = assertParsedFilter("due[eq]=1970-12-20T13:37", filter);
-		assertEquals("1970-12-20T13:37", parsedFilter.value().getDateTime().toString());
+		EqualsFilter parsedFilter = assertParsedFilter("due[eq]=1970-12-20T13:37", filter);
+		LocalDateTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20T13:37", parsedValue.getDateTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateFilterValue() {
-		EqualsFilter<LocalDateFilterValue> filter = TestFilterKey.DUE_DATE.eq(LocalDate.parse("1970-12-20"));
-		assertEquals("1970-12-20", filter.value().getDate().toString());
+		EqualsFilter filter = TestFilterKey.DUE_DATE.eq(LocalDate.parse("1970-12-20"));
+		LocalDateFilterValue value = filter.value();
+		assertEquals("1970-12-20", value.getDate().toString());
 
-		EqualsFilter<LocalDateFilterValue> parsedFilter = assertParsedFilter("due_date[eq]=1970-12-20", filter);
-		assertEquals("1970-12-20", parsedFilter.value().getDate().toString());
+		EqualsFilter parsedFilter = assertParsedFilter("due_date[eq]=1970-12-20", filter);
+		LocalDateFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20", parsedValue.getDate().toString());
 	}
 
 }

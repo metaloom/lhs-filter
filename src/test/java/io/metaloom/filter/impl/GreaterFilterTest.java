@@ -29,60 +29,72 @@ public class GreaterFilterTest extends AbstractFilterTest {
 	@Test
 	@Override
 	public void testDurationFilterValue() {
-		GreaterFilter<DurationFilterValue> filter = TestFilterKey.VIDEO_DURATION.gte(Duration.of(10, ChronoUnit.MINUTES));
-		assertEquals(10, filter.value().getDuration().toMinutes());
+		GreaterFilter filter = TestFilterKey.VIDEO_DURATION.gte(Duration.of(10, ChronoUnit.MINUTES));
+		DurationFilterValue value = filter.value();
+		assertEquals(10, value.getDuration().toMinutes());
 
-		GreaterFilter<DurationFilterValue> parsedFilter = assertParsedFilter("duration[gte]=PT10M", filter);
-		assertEquals(10, parsedFilter.value().getDuration().toMinutes());
+		GreaterFilter parsedFilter = assertParsedFilter("duration[gte]=PT10M", filter);
+		DurationFilterValue parsedValue = parsedFilter.value();
+		assertEquals(10, parsedValue.getDuration().toMinutes());
 	}
 
 	@Test
 	@Override
 	public void testSizeFilterValue() {
-		GreaterFilter<SizeFilterValue> filter = TestFilterKey.FILE_SIZE.gte("10GB");
-		assertEquals(10L * 1024 * 1024 * 1024, filter.value().getNumber());
+		GreaterFilter filter = TestFilterKey.FILE_SIZE.gte("10GB");
+		SizeFilterValue value = filter.value();
+		assertEquals(10L * 1024 * 1024 * 1024, value.getNumber());
 
-		GreaterFilter<SizeFilterValue> parsedFilter = assertParsedFilter("size[gte]=10GB", filter);
-		assertEquals(10L * 1024 * 1024 * 1024, parsedFilter.value().getNumber().longValue());
+		GreaterFilter parsedFilter = assertParsedFilter("size[gte]=10GB", filter);
+		NumberFilterValue parsedValue = parsedFilter.value();
+		assertEquals(10L * 1024 * 1024 * 1024, parsedValue.getNumber().longValue());
 	}
 
 	@Test
 	@Override
 	public void testNumberFilterValue() {
-		GreaterFilter<NumberFilterValue> filter = TestFilterKey.ARTICLE_PRICE.gte(42);
-		assertEquals(42, filter.value().getNumber());
+		GreaterFilter filter = TestFilterKey.ARTICLE_PRICE.gte(42);
+		NumberFilterValue value = filter.value();
+		assertEquals(42, value.getNumber());
 
-		GreaterFilter<NumberFilterValue> parsedFilter = assertParsedFilter("price[gte]=42", filter);
-		assertEquals(42, parsedFilter.value().getNumber().longValue());
+		GreaterFilter parsedFilter = assertParsedFilter("price[gte]=42", filter);
+		NumberFilterValue parsedValue = parsedFilter.value();
+		assertEquals(42, parsedValue.getNumber().longValue());
 	}
 
 	@Test
 	@Override
 	public void testLocalTimeFilterValue() {
-		GreaterFilter<LocalTimeFilterValue> filter = TestFilterKey.DUE_TIME.gte(LocalTime.parse("13:37"));
-		assertEquals("13:37", filter.value().getTime().toString());
+		GreaterFilter filter = TestFilterKey.DUE_TIME.gte(LocalTime.parse("13:37"));
+		LocalTimeFilterValue value = filter.value();
+		assertEquals("13:37", value.getTime().toString());
 
-		GreaterFilter<LocalTimeFilterValue> parsedFilter = assertParsedFilter("due_time[gte]=13:37", filter);
-		assertEquals("13:37", parsedFilter.value().getTime().toString());
+		GreaterFilter parsedFilter = assertParsedFilter("due_time[gte]=13:37", filter);
+		LocalTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("13:37", parsedValue.getTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateTimeFilterValue() {
-		GreaterFilter<LocalDateTimeFilterValue> filter = TestFilterKey.DUE.gte(LocalDateTime.parse("1970-12-20T13:37"));
-		assertEquals("1970-12-20T13:37", filter.value().getDateTime().toString());
+		GreaterFilter filter = TestFilterKey.DUE.gte(LocalDateTime.parse("1970-12-20T13:37"));
+		LocalDateTimeFilterValue value = filter.value();
+		assertEquals("1970-12-20T13:37", value.getDateTime().toString());
 
-		GreaterFilter<LocalDateTimeFilterValue> parsedFilter = assertParsedFilter("due[gte]=1970-12-20T13:37", filter);
-		assertEquals("1970-12-20T13:37", parsedFilter.value().getDateTime().toString());
+		GreaterFilter parsedFilter = assertParsedFilter("due[gte]=1970-12-20T13:37", filter);
+		LocalDateTimeFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20T13:37", parsedValue.getDateTime().toString());
 	}
 
 	@Test
 	@Override
 	public void testLocalDateFilterValue() {
-		GreaterFilter<LocalDateFilterValue> filter = TestFilterKey.DUE_DATE.gte(LocalDate.parse("1970-12-20"));
-		assertEquals("1970-12-20", filter.value().getDate().toString());
+		GreaterFilter filter = TestFilterKey.DUE_DATE.gte(LocalDate.parse("1970-12-20"));
+		LocalDateFilterValue value = filter.value();
+		assertEquals("1970-12-20", value.getDate().toString());
 
-		GreaterFilter<LocalDateFilterValue> parsedFilter = assertParsedFilter("due_date[gte]=1970-12-20", filter);
-		assertEquals("1970-12-20", parsedFilter.value().getDate().toString());
+		GreaterFilter parsedFilter = assertParsedFilter("due_date[gte]=1970-12-20", filter);
+		LocalDateFilterValue parsedValue = parsedFilter.value();
+		assertEquals("1970-12-20", parsedValue.getDate().toString());
 	}
 }
