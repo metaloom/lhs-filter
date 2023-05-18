@@ -34,12 +34,6 @@ This library is still in early development.
 %{snippet|id=example|file=src/test/java/io/metaloom/filter/BasicUsageExampleTest.java}
 ```
 
-The enum which lists all potential keys to filter by must be defined for your domain.
-
-```java
-%{snippet|id=key|file=src/test/java/io/metaloom/filter/BasicUsageExampleTest.java}
-```
-
 ## Release Process
 
 ```bash

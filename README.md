@@ -31,40 +31,32 @@ This library is still in early development.
 ## Usage
 
 ```java
+// Define the filter keys
+StringFilterKey USER_USERNAME = new StringFilterKey("username");
+LocalTimeFilterKey CREATE_DATE = new LocalTimeFilterKey("created");
+SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
+
 // Construct a filter
-EqualsFilter filter = ExampleFilterKey.USER_USERNAME.eq("joedoe");
+EqualsFilter filter = USER_USERNAME.eq("joedoe");
 assertEquals("username[eq]=joedoe", filter.toString());
 
-AfterFilter filter2 = ExampleFilterKey.CREATE_DATE.after(LocalTime.parse("13:37"));
+AfterFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
 assertEquals("created[after]=13:37", filter2.toString());
 
-GreaterFilter filter3 = ExampleFilterKey.FILE_SIZE.gte("12 GB");
+GreaterFilter filter3 = FILE_SIZE.gte("12 GB");
 assertEquals("size[gte]=12GB", filter3.toString());
 
-// Parse a filter
+// Register the keys in the parser
+LHSFilterParser.getInstance().register(USER_USERNAME);
+LHSFilterParser.getInstance().register(CREATE_DATE);
+LHSFilterParser.getInstance().register(FILE_SIZE);
+
+// Parse a filter string
 List<Filter> parsedFilters = LHSFilterParser.getInstance().parse("username[eq]=joedoe");
 Filter parsedFilter = parsedFilters.get(0);
-assertEquals(ExampleFilterKey.USER_USERNAME, parsedFilter.filterKey());
-assertEquals("joedoe", parsedFilter.value().toString());
-```
-
-The enum which lists all potential keys to filter by must be defined for your domain.
-
-```java
-final class ExampleFilterKey {
-
-  public static final StringFilterKey USER_USERNAME = new StringFilterKey("username");
-
-  public static final LocalTimeFilterKey CREATE_DATE = new LocalTimeFilterKey("created");
-
-  public static final SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
-
-  static {
-    LHSFilterParser.getInstance().register(USER_USERNAME);
-    LHSFilterParser.getInstance().register(CREATE_DATE);
-    LHSFilterParser.getInstance().register(FILE_SIZE);
-  }
-}
+assertEquals(USER_USERNAME, parsedFilter.filterKey());
+StringFilterValue value = parsedFilter.value();
+assertEquals("joedoe", value.toString());
 ```
 
 ## Release Process
