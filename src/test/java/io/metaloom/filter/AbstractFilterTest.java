@@ -10,6 +10,8 @@ import io.metaloom.filter.value.FilterValue;
 public abstract class AbstractFilterTest implements FilterTestCases {
 
 	LHSFilterParser parser = LHSFilterParser.getInstance();
+
+	@SuppressWarnings("unchecked")
 	public <F extends Filter, V extends FilterValue> F assertParsedFilter(String expectedFilterStr, F filter) {
 		String filterStr = filter.toString();
 		assertEquals(expectedFilterStr, filterStr, "The serialized filter did not match up");

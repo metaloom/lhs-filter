@@ -6,13 +6,15 @@ import io.metaloom.filter.value.FilterValue;
 
 public class LesserFilter extends AbstractFilter {
 
+	public static final String KEY = "lte";
+
 	public LesserFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
 	@Override
 	public String getOperationKey() {
-		return "lte";
+		return KEY;
 	}
 
 	public static LesserFilter parse(FilterKey filterKey, String op, String val) {

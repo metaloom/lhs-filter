@@ -8,4 +8,6 @@ public interface FilterKey {
 
 	FilterValue createValue(String operation, String value);
 
+	<K> K invoke(Filter filter);
+
 }

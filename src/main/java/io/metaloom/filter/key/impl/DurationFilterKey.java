@@ -5,12 +5,13 @@ import java.time.Duration;
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
+import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.range.DurationRangeFilterValue;
 
-public class DurationFilterKey extends AbstractFilterKey {
+public class DurationFilterKey extends AbstractFilterKey<DurationFilterKey> {
 
 	public DurationFilterKey(String key) {
 		super(key);
@@ -25,6 +26,10 @@ public class DurationFilterKey extends AbstractFilterKey {
 		return new EqualsFilter(this, new DurationFilterValue(dur));
 	}
 
+	public NotEqualsFilter ne(Duration dur) {
+		return new NotEqualsFilter(this, new DurationFilterValue(dur));
+	}
+
 	public GreaterFilter gte(Duration dur) {
 		return new GreaterFilter(this, new DurationFilterValue(dur));
 	}
@@ -37,4 +42,8 @@ public class DurationFilterKey extends AbstractFilterKey {
 		return new RangeFilter(this, new DurationRangeFilterValue(from, to));
 	}
 
+	@Override
+	protected DurationFilterKey self() {
+		return this;
+	}
 }

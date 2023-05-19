@@ -15,10 +15,14 @@ import io.metaloom.filter.impl.BeforeFilter;
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
+import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.parser.FilterParser;
 import io.metaloom.filter.parser.LHSFilterParser;
 
+/**
+ * Default implementation for an {@link LHSFilterParser} which has already various filters registered.
+ */
 public enum DefaultLHSFilterParser implements LHSFilterParser {
 
 	INSTANCE;
@@ -27,12 +31,13 @@ public enum DefaultLHSFilterParser implements LHSFilterParser {
 	private Map<String, FilterKey> keys = new HashMap<>();
 
 	DefaultLHSFilterParser() {
-		register("eq", EqualsFilter::parse);
-		register("after", AfterFilter::parse);
-		register("before", BeforeFilter::parse);
-		register("range", RangeFilter::parse);
-		register("lte", LesserFilter::parse);
-		register("gte", GreaterFilter::parse);
+		register(EqualsFilter.KEY, EqualsFilter::parse);
+		register(NotEqualsFilter.KEY, NotEqualsFilter::parse);
+		register(AfterFilter.KEY, AfterFilter::parse);
+		register(BeforeFilter.KEY, BeforeFilter::parse);
+		register(RangeFilter.KEY, RangeFilter::parse);
+		register(LesserFilter.KEY, LesserFilter::parse);
+		register(GreaterFilter.KEY, GreaterFilter::parse);
 	}
 
 	@Override
@@ -56,7 +61,7 @@ public enum DefaultLHSFilterParser implements LHSFilterParser {
 		return lines.map(filterLine -> parseFilterLine(filterLine)).collect(Collectors.toList());
 	}
 
-	private Filter  parseFilterLine(String line) {
+	private Filter parseFilterLine(String line) {
 		String key = line.substring(0, line.indexOf("["));
 		String op = line.substring(line.indexOf("[") + 1, line.indexOf("]"));
 		String val = line.substring(line.indexOf("=") + 1);

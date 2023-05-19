@@ -4,11 +4,11 @@ import io.metaloom.filter.AbstractFilter;
 import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.value.FilterValue;
 
-public class EqualsFilter extends AbstractFilter {
+public class NotEqualsFilter extends AbstractFilter {
 
-	public static final String KEY = "eq";
+	public static final String KEY = "ne";
 
-	public EqualsFilter(FilterKey key, FilterValue value) {
+	public NotEqualsFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
@@ -17,9 +17,8 @@ public class EqualsFilter extends AbstractFilter {
 		return KEY;
 	}
 
-	public static EqualsFilter parse(FilterKey key, String op, String val) {
+	public static NotEqualsFilter parse(FilterKey key, String op, String val) {
 		FilterValue filterVal = key.createValue(op, val);
-		return new EqualsFilter(key, filterVal);
+		return new NotEqualsFilter(key, filterVal);
 	}
-
 }

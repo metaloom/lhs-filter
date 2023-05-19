@@ -3,13 +3,14 @@ package io.metaloom.filter.key.impl;
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
+import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.SizeFilterValueVariant;
 import io.metaloom.filter.value.impl.SizeFilterValue;
 import io.metaloom.filter.value.impl.range.SizeRangeFilterValue;
 
-public class SizeFilterKey extends AbstractFilterKey {
+public class SizeFilterKey extends AbstractFilterKey<SizeFilterKey> {
 
 	public SizeFilterKey(String key) {
 		super(key);
@@ -27,6 +28,10 @@ public class SizeFilterKey extends AbstractFilterKey {
 		return new EqualsFilter(this, new SizeFilterValue(value));
 	}
 
+	public NotEqualsFilter ne(String value) {
+		return new NotEqualsFilter(this, new SizeFilterValue(value));
+	}
+
 	public GreaterFilter gte(String value) {
 		return new GreaterFilter(this, new SizeFilterValue(value));
 	}
@@ -39,4 +44,8 @@ public class SizeFilterKey extends AbstractFilterKey {
 		return new RangeFilter(this, new SizeRangeFilterValue(from, to));
 	}
 
+	@Override
+	protected SizeFilterKey self() {
+		return this;
+	}
 }

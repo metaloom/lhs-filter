@@ -7,7 +7,7 @@ public abstract class AbstractFilter implements Filter {
 	private FilterKey key;
 	private FilterValue value;
 
-	public AbstractFilter(FilterKey key,  FilterValue value) {
+	public AbstractFilter(FilterKey key, FilterValue value) {
 		this.key = key;
 		this.value = value;
 	}
@@ -27,6 +27,11 @@ public abstract class AbstractFilter implements Filter {
 	@SuppressWarnings("unchecked")
 	public <T extends FilterValue> T value() {
 		return (T) value;
+	}
+
+	@Override
+	public <K> K invoke() {
+		return key.invoke(this);
 	}
 
 }

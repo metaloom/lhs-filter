@@ -7,10 +7,11 @@ import io.metaloom.filter.impl.BeforeFilter;
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
+import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
 
-public class LocalDateTimeFilterKey extends AbstractFilterKey {
+public class LocalDateTimeFilterKey extends AbstractFilterKey<LocalDateTimeFilterKey> {
 
 	public LocalDateTimeFilterKey(String key) {
 		super(key);
@@ -21,8 +22,12 @@ public class LocalDateTimeFilterKey extends AbstractFilterKey {
 		return LocalDateTimeFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter   eq(LocalDateTime date) {
+	public EqualsFilter eq(LocalDateTime date) {
 		return new EqualsFilter(this, new LocalDateTimeFilterValue(date));
+	}
+
+	public NotEqualsFilter ne(LocalDateTime date) {
+		return new NotEqualsFilter(this, new LocalDateTimeFilterValue(date));
 	}
 
 	public GreaterFilter gte(LocalDateTime date) {
@@ -39,5 +44,10 @@ public class LocalDateTimeFilterKey extends AbstractFilterKey {
 
 	public BeforeFilter before(LocalDateTime date) {
 		return new BeforeFilter(this, new LocalDateTimeFilterValue(date));
+	}
+
+	@Override
+	protected LocalDateTimeFilterKey self() {
+		return this;
 	}
 }

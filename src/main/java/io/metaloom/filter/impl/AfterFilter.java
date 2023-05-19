@@ -7,15 +7,17 @@ import io.metaloom.filter.value.TemporalFilterValue;
 
 public class AfterFilter extends AbstractFilter {
 
+	public static final String KEY = "after";
+
 	public AfterFilter(FilterKey key, FilterValue value) {
 		super(key, value);
 	}
 
 	@Override
 	public String getOperationKey() {
-		return "after";
+		return KEY;
 	}
-	
+
 	public static AfterFilter parse(FilterKey filterKey, String op, String val) {
 		TemporalFilterValue tempValue = FilterValue.createTemporal(val);
 		return new AfterFilter(filterKey, tempValue);

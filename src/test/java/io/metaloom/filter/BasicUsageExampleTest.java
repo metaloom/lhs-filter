@@ -22,13 +22,18 @@ public class BasicUsageExampleTest {
 	public void testExample() {
 		// SNIPPET START example
 		// Define the filter keys
-		StringFilterKey USER_USERNAME = new StringFilterKey("username");
+		StringFilterKey USER_USERNAME = new StringFilterKey("username", (filterkey, filter, value) -> {
+			System.out.println("Mapper " + value.getClass());
+			System.out.println("Mapper " + filter);
+			System.out.println("Mapper " + filterkey.key());
+			return "action result";
+		});
 		LocalTimeFilterKey CREATE_DATE = new LocalTimeFilterKey("created");
 		SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
 
 		// Construct a filter
-		EqualsFilter filter = USER_USERNAME.eq("joedoe");
-		assertEquals("username[eq]=joedoe", filter.toString());
+		EqualsFilter filter1 = USER_USERNAME.eq("joedoe");
+		assertEquals("username[eq]=joedoe", filter1.toString());
 
 		AfterFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
 		assertEquals("created[after]=13:37", filter2.toString());
@@ -42,7 +47,12 @@ public class BasicUsageExampleTest {
 		LHSFilterParser.getInstance().register(FILE_SIZE);
 
 		// Parse a filter string
-		List<Filter> parsedFilters = LHSFilterParser.getInstance().parse("username[eq]=joedoe");
+		String queryLine = "username[eq]=joedoe,size[range]=1GB_42GB";
+		List<Filter> parsedFilters = LHSFilterParser.getInstance().parse(queryLine);
+		for (Filter filter : parsedFilters) {
+			String result = filter.invoke();
+			System.out.println("Result: " + result);
+		}
 		Filter parsedFilter = parsedFilters.get(0);
 		assertEquals(USER_USERNAME, parsedFilter.filterKey());
 		StringFilterValue value = parsedFilter.value();
