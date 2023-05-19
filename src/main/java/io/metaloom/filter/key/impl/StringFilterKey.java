@@ -6,13 +6,13 @@ import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
-public class StringFilterKey extends AbstractFilterKey<StringFilterKey> {
+public class StringFilterKey extends AbstractFilterKey<StringFilterKey, StringFilterValue> {
 
 	public StringFilterKey(String key) {
 		super(key);
 	}
 
-	public StringFilterKey(String key, FilterAction<StringFilterKey, ?> action) {
+	public StringFilterKey(String key, FilterAction<StringFilterKey, StringFilterValue> action) {
 		super(key, action);
 	}
 

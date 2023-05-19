@@ -10,6 +10,6 @@ public interface Filter {
 
 	String getOperationKey();
 
-	<K> K invoke();
+	Object invoke();
 
 }

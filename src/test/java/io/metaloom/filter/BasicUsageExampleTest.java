@@ -15,6 +15,7 @@ import io.metaloom.filter.key.impl.SizeFilterKey;
 import io.metaloom.filter.key.impl.StringFilterKey;
 import io.metaloom.filter.parser.LHSFilterParser;
 import io.metaloom.filter.value.impl.StringFilterValue;
+import io.metaloom.filter.value.impl.range.SizeRangeFilterValue;
 
 public class BasicUsageExampleTest {
 
@@ -29,7 +30,12 @@ public class BasicUsageExampleTest {
 			return "action result";
 		});
 		LocalTimeFilterKey CREATE_DATE = new LocalTimeFilterKey("created");
-		SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
+		SizeFilterKey FILE_SIZE = new SizeFilterKey("size", (key, filter, value) -> {
+			if (value instanceof SizeRangeFilterValue r) {
+				return "action: " + r.getFrom() + " to " + r.getTo();
+			}
+			return null;
+		});
 
 		// Construct a filter
 		EqualsFilter filter1 = USER_USERNAME.eq("joedoe");
@@ -50,7 +56,7 @@ public class BasicUsageExampleTest {
 		String queryLine = "username[eq]=joedoe,size[range]=1GB_42GB";
 		List<Filter> parsedFilters = LHSFilterParser.getInstance().parse(queryLine);
 		for (Filter filter : parsedFilters) {
-			String result = filter.invoke();
+			Object result = filter.invoke();
 			System.out.println("Result: " + result);
 		}
 		Filter parsedFilter = parsedFilters.get(0);

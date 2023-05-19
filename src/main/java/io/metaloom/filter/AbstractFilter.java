@@ -30,7 +30,7 @@ public abstract class AbstractFilter implements Filter {
 	}
 
 	@Override
-	public <K> K invoke() {
+	public Object invoke() {
 		return key.invoke(this);
 	}
 

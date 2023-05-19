@@ -2,6 +2,7 @@ package io.metaloom.filter.key.impl;
 
 import java.time.LocalDate;
 
+import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.AfterFilter;
 import io.metaloom.filter.impl.BeforeFilter;
 import io.metaloom.filter.impl.EqualsFilter;
@@ -9,12 +10,17 @@ import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
 import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
+import io.metaloom.filter.value.TemporalFilterValue;
 import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
 
-public class LocalDateFilterKey extends AbstractFilterKey<LocalDateFilterKey> {
+public class LocalDateFilterKey extends AbstractFilterKey<LocalDateFilterKey, TemporalFilterValue> {
 
 	public LocalDateFilterKey(String key) {
 		super(key);
+	}
+
+	public LocalDateFilterKey(String key, FilterAction<LocalDateFilterKey, TemporalFilterValue> action) {
+		super(key, action);
 	}
 
 	@Override

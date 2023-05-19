@@ -5,8 +5,8 @@ import io.metaloom.filter.FilterKey;
 import io.metaloom.filter.value.FilterValue;
 
 @FunctionalInterface
-public interface FilterAction<K extends FilterKey, T> {
+public interface FilterAction<K extends FilterKey, V extends FilterValue> {
 
-	T invoke(K key, Filter filter, FilterValue value);
+	Object invoke(K key, Filter filter, V value);
 
 }

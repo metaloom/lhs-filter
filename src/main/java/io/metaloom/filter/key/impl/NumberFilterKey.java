@@ -1,5 +1,6 @@
 package io.metaloom.filter.key.impl;
 
+import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.EqualsFilter;
 import io.metaloom.filter.impl.GreaterFilter;
 import io.metaloom.filter.impl.LesserFilter;
@@ -10,10 +11,14 @@ import io.metaloom.filter.value.NumberFilterValueVariant;
 import io.metaloom.filter.value.impl.NumberFilterValue;
 import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
 
-public class NumberFilterKey extends AbstractFilterKey<NumberFilterKey> {
+public class NumberFilterKey extends AbstractFilterKey<NumberFilterKey, NumberFilterValueVariant> {
 
 	public NumberFilterKey(String key) {
 		super(key);
+	}
+
+	public NumberFilterKey(String key, FilterAction<NumberFilterKey, NumberFilterValueVariant> action) {
+		super(key, action);
 	}
 
 	@Override
