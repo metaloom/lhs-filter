@@ -10,13 +10,9 @@ import java.util.stream.Stream;
 import io.metaloom.filter.Filter;
 import io.metaloom.filter.FilterException;
 import io.metaloom.filter.FilterKey;
-import io.metaloom.filter.impl.AfterFilter;
-import io.metaloom.filter.impl.BeforeFilter;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
+import io.metaloom.filter.Operation;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.parser.FilterParser;
 import io.metaloom.filter.parser.LHSFilterParser;
 
@@ -31,13 +27,13 @@ public enum DefaultLHSFilterParser implements LHSFilterParser {
 	private Map<String, FilterKey> keys = new HashMap<>();
 
 	DefaultLHSFilterParser() {
-		register(EqualsFilter.KEY, EqualsFilter::parse);
-		register(NotEqualsFilter.KEY, NotEqualsFilter::parse);
-		register(AfterFilter.KEY, AfterFilter::parse);
-		register(BeforeFilter.KEY, BeforeFilter::parse);
-		register(RangeFilter.KEY, RangeFilter::parse);
-		register(LesserFilter.KEY, LesserFilter::parse);
-		register(GreaterFilter.KEY, GreaterFilter::parse);
+		register(Operation.EQUALS, ValueFilter::parse);
+		register(Operation.NOT_EQUALS, ValueFilter::parse);
+		register(Operation.BEFORE, ValueFilter::parse);
+		register(Operation.AFTER, ValueFilter::parse);
+		register(Operation.GREATER, ValueFilter::parse);
+		register(Operation.LESSER, ValueFilter::parse);
+		register(Operation.RANGE, RangeFilter::parse);
 	}
 
 	@Override

@@ -1,11 +1,13 @@
 package io.metaloom.filter.key.impl;
 
+import static io.metaloom.filter.Operation.EQUALS;
+import static io.metaloom.filter.Operation.GREATER;
+import static io.metaloom.filter.Operation.LESSER;
+import static io.metaloom.filter.Operation.NOT_EQUALS;
+
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.NumberFilterValueVariant;
 import io.metaloom.filter.value.impl.NumberFilterValue;
@@ -29,24 +31,24 @@ public class NumberFilterKey extends AbstractFilterKey<NumberFilterKey, NumberFi
 		return NumberFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(Number number) {
-		return new EqualsFilter(this, new NumberFilterValue(number));
+	public ValueFilter eq(Number number) {
+		return new ValueFilter(this, EQUALS, new NumberFilterValue(number));
 	}
 
-	public NotEqualsFilter ne(Number number) {
-		return new NotEqualsFilter(this, new NumberFilterValue(number));
+	public ValueFilter ne(Number number) {
+		return new ValueFilter(this, NOT_EQUALS, new NumberFilterValue(number));
 	}
 
 	public RangeFilter range(double from, double to) {
 		return new RangeFilter(this, new NumberRangeFilterValue(from, to));
 	}
 
-	public LesserFilter lte(Number number) {
-		return new LesserFilter(this, new NumberFilterValue(number));
+	public ValueFilter lte(Number number) {
+		return new ValueFilter(this, LESSER, new NumberFilterValue(number));
 	}
 
-	public GreaterFilter gte(Number number) {
-		return new GreaterFilter(this, new NumberFilterValue(number));
+	public ValueFilter gte(Number number) {
+		return new ValueFilter(this, GREATER, new NumberFilterValue(number));
 	}
 
 	@Override

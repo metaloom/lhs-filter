@@ -1,14 +1,16 @@
 package io.metaloom.filter.key.impl;
 
+import static io.metaloom.filter.Operation.AFTER;
+import static io.metaloom.filter.Operation.BEFORE;
+import static io.metaloom.filter.Operation.EQUALS;
+import static io.metaloom.filter.Operation.GREATER;
+import static io.metaloom.filter.Operation.LESSER;
+import static io.metaloom.filter.Operation.NOT_EQUALS;
+
 import java.time.LocalDateTime;
 
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.AfterFilter;
-import io.metaloom.filter.impl.BeforeFilter;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.TemporalFilterValue;
 import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
@@ -28,28 +30,28 @@ public class LocalDateTimeFilterKey extends AbstractFilterKey<LocalDateTimeFilte
 		return LocalDateTimeFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(LocalDateTime date) {
-		return new EqualsFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter eq(LocalDateTime date) {
+		return new ValueFilter(this, EQUALS, new LocalDateTimeFilterValue(date));
 	}
 
-	public NotEqualsFilter ne(LocalDateTime date) {
-		return new NotEqualsFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter ne(LocalDateTime date) {
+		return new ValueFilter(this, NOT_EQUALS, new LocalDateTimeFilterValue(date));
 	}
 
-	public GreaterFilter gte(LocalDateTime date) {
-		return new GreaterFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter gte(LocalDateTime date) {
+		return new ValueFilter(this, GREATER, new LocalDateTimeFilterValue(date));
 	}
 
-	public LesserFilter lte(LocalDateTime date) {
-		return new LesserFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter lte(LocalDateTime date) {
+		return new ValueFilter(this, LESSER, new LocalDateTimeFilterValue(date));
 	}
 
-	public AfterFilter after(LocalDateTime date) {
-		return new AfterFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter after(LocalDateTime date) {
+		return new ValueFilter(this, AFTER, new LocalDateTimeFilterValue(date));
 	}
 
-	public BeforeFilter before(LocalDateTime date) {
-		return new BeforeFilter(this, new LocalDateTimeFilterValue(date));
+	public ValueFilter before(LocalDateTime date) {
+		return new ValueFilter(this, BEFORE, new LocalDateTimeFilterValue(date));
 	}
 
 	@Override

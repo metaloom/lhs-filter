@@ -2,12 +2,10 @@ package io.metaloom.filter.key.impl;
 
 import java.time.Duration;
 
+import io.metaloom.filter.Operation;
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.range.DurationRangeFilterValue;
@@ -27,20 +25,20 @@ public class DurationFilterKey extends AbstractFilterKey<DurationFilterKey, Dura
 		return DurationFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(Duration dur) {
-		return new EqualsFilter(this, new DurationFilterValue(dur));
+	public ValueFilter eq(Duration dur) {
+		return new ValueFilter(this, Operation.EQUALS, new DurationFilterValue(dur));
 	}
 
-	public NotEqualsFilter ne(Duration dur) {
-		return new NotEqualsFilter(this, new DurationFilterValue(dur));
+	public ValueFilter ne(Duration dur) {
+		return new ValueFilter(this, Operation.NOT_EQUALS, new DurationFilterValue(dur));
 	}
 
-	public GreaterFilter gte(Duration dur) {
-		return new GreaterFilter(this, new DurationFilterValue(dur));
+	public ValueFilter gte(Duration dur) {
+		return new ValueFilter(this, Operation.GREATER, new DurationFilterValue(dur));
 	}
 
-	public LesserFilter lte(Duration dur) {
-		return new LesserFilter(this, new DurationFilterValue(dur));
+	public ValueFilter lte(Duration dur) {
+		return new ValueFilter(this, Operation.GREATER, new DurationFilterValue(dur));
 	}
 
 	public RangeFilter range(Duration from, Duration to) {

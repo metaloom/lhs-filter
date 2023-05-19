@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import io.metaloom.filter.impl.AfterFilter;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.impl.LocalTimeFilterKey;
 import io.metaloom.filter.key.impl.SizeFilterKey;
 import io.metaloom.filter.key.impl.StringFilterKey;
@@ -38,13 +36,13 @@ public class BasicUsageExampleTest {
 		});
 
 		// Construct a filter
-		EqualsFilter filter1 = USER_USERNAME.eq("joedoe");
+		ValueFilter filter1 = USER_USERNAME.eq("joedoe");
 		assertEquals("username[eq]=joedoe", filter1.toString());
 
-		AfterFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
+		ValueFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
 		assertEquals("created[after]=13:37", filter2.toString());
 
-		GreaterFilter filter3 = FILE_SIZE.gte("12 GB");
+		ValueFilter filter3 = FILE_SIZE.gte("12 GB");
 		assertEquals("size[gte]=12GB", filter3.toString());
 
 		// Register the keys in the parser

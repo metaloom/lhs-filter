@@ -1,14 +1,16 @@
 package io.metaloom.filter.key.impl;
 
+import static io.metaloom.filter.Operation.AFTER;
+import static io.metaloom.filter.Operation.BEFORE;
+import static io.metaloom.filter.Operation.EQUALS;
+import static io.metaloom.filter.Operation.GREATER;
+import static io.metaloom.filter.Operation.LESSER;
+import static io.metaloom.filter.Operation.NOT_EQUALS;
+
 import java.time.LocalTime;
 
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.AfterFilter;
-import io.metaloom.filter.impl.BeforeFilter;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.TemporalFilterValue;
 import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
@@ -28,28 +30,28 @@ public class LocalTimeFilterKey extends AbstractFilterKey<LocalTimeFilterKey, Te
 		return LocalTimeFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(LocalTime time) {
-		return new EqualsFilter(this, new LocalTimeFilterValue(time));
+	public ValueFilter eq(LocalTime time) {
+		return new ValueFilter(this, EQUALS, new LocalTimeFilterValue(time));
 	}
 
-	public NotEqualsFilter ne(LocalTime time) {
-		return new NotEqualsFilter(this, new LocalTimeFilterValue(time));
+	public ValueFilter ne(LocalTime time) {
+		return new ValueFilter(this, NOT_EQUALS, new LocalTimeFilterValue(time));
 	}
 
-	public GreaterFilter gte(LocalTime time) {
-		return new GreaterFilter(this, new LocalTimeFilterValue(time));
+	public ValueFilter gte(LocalTime time) {
+		return new ValueFilter(this, GREATER, new LocalTimeFilterValue(time));
 	}
 
-	public LesserFilter lte(LocalTime time) {
-		return new LesserFilter(this, new LocalTimeFilterValue(time));
+	public ValueFilter lte(LocalTime time) {
+		return new ValueFilter(this, LESSER, new LocalTimeFilterValue(time));
 	}
 
-	public AfterFilter after(LocalTime time) {
-		return new AfterFilter(this, new LocalTimeFilterValue(time));
+	public ValueFilter after(LocalTime time) {
+		return new ValueFilter(this, AFTER, new LocalTimeFilterValue(time));
 	}
 
-	public BeforeFilter before(LocalTime date) {
-		return new BeforeFilter(this, new LocalTimeFilterValue(date));
+	public ValueFilter before(LocalTime date) {
+		return new ValueFilter(this, BEFORE, new LocalTimeFilterValue(date));
 	}
 
 	@Override

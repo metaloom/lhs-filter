@@ -1,8 +1,8 @@
 package io.metaloom.filter.key.impl;
 
+import io.metaloom.filter.Operation;
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.StringFilterValue;
 
@@ -21,12 +21,12 @@ public class StringFilterKey extends AbstractFilterKey<StringFilterKey, StringFi
 		return StringFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(String value) {
-		return new EqualsFilter(this, new StringFilterValue(value));
+	public ValueFilter eq(String value) {
+		return new ValueFilter(this, Operation.EQUALS, new StringFilterValue(value));
 	}
 
-	public NotEqualsFilter ne(String value) {
-		return new NotEqualsFilter(this, new StringFilterValue(value));
+	public ValueFilter ne(String value) {
+		return new ValueFilter(this, Operation.NOT_EQUALS, new StringFilterValue(value));
 	}
 
 	@Override

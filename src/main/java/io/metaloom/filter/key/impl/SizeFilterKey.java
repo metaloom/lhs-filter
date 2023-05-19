@@ -1,11 +1,13 @@
 package io.metaloom.filter.key.impl;
 
+import static io.metaloom.filter.Operation.EQUALS;
+import static io.metaloom.filter.Operation.GREATER;
+import static io.metaloom.filter.Operation.LESSER;
+import static io.metaloom.filter.Operation.NOT_EQUALS;
+
 import io.metaloom.filter.action.FilterAction;
-import io.metaloom.filter.impl.EqualsFilter;
-import io.metaloom.filter.impl.GreaterFilter;
-import io.metaloom.filter.impl.LesserFilter;
-import io.metaloom.filter.impl.NotEqualsFilter;
 import io.metaloom.filter.impl.RangeFilter;
+import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.SizeFilterValueVariant;
 import io.metaloom.filter.value.impl.SizeFilterValue;
@@ -29,20 +31,20 @@ public class SizeFilterKey extends AbstractFilterKey<SizeFilterKey, SizeFilterVa
 		return SizeFilterValue.create(valueStr);
 	}
 
-	public EqualsFilter eq(String value) {
-		return new EqualsFilter(this, new SizeFilterValue(value));
+	public ValueFilter eq(String value) {
+		return new ValueFilter(this, EQUALS, new SizeFilterValue(value));
 	}
 
-	public NotEqualsFilter ne(String value) {
-		return new NotEqualsFilter(this, new SizeFilterValue(value));
+	public ValueFilter ne(String value) {
+		return new ValueFilter(this, NOT_EQUALS, new SizeFilterValue(value));
 	}
 
-	public GreaterFilter gte(String value) {
-		return new GreaterFilter(this, new SizeFilterValue(value));
+	public ValueFilter gte(String value) {
+		return new ValueFilter(this, GREATER, new SizeFilterValue(value));
 	}
 
-	public LesserFilter lte(String value) {
-		return new LesserFilter(this, new SizeFilterValue(value));
+	public ValueFilter lte(String value) {
+		return new ValueFilter(this, LESSER, new SizeFilterValue(value));
 	}
 
 	public RangeFilter range(String from, String to) {

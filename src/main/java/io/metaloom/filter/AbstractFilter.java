@@ -6,10 +6,12 @@ public abstract class AbstractFilter implements Filter {
 
 	private FilterKey key;
 	private FilterValue value;
+	private String operation;
 
-	public AbstractFilter(FilterKey key, FilterValue value) {
+	public AbstractFilter(FilterKey key, String operation, FilterValue value) {
 		this.key = key;
 		this.value = value;
+		this.operation = operation;
 	}
 
 	@Override
@@ -21,6 +23,11 @@ public abstract class AbstractFilter implements Filter {
 	@Override
 	public FilterKey filterKey() {
 		return key;
+	}
+
+	@Override
+	public String getOperationKey() {
+		return operation;
 	}
 
 	@Override
