@@ -11,6 +11,7 @@ import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.AbstractFilterTest;
+import io.metaloom.filter.FilterTestCases;
 import io.metaloom.filter.key.TestFilterKey;
 import io.metaloom.filter.value.impl.DurationFilterValue;
 import io.metaloom.filter.value.impl.NumberFilterValue;
@@ -20,7 +21,7 @@ import io.metaloom.filter.value.impl.time.LocalDateFilterValue;
 import io.metaloom.filter.value.impl.time.LocalDateTimeFilterValue;
 import io.metaloom.filter.value.impl.time.LocalTimeFilterValue;
 
-public class ValueFilterTest extends AbstractFilterTest {
+public class ValueFilterTest extends AbstractFilterTest implements FilterTestCases {
 
 	@Test
 	@Override

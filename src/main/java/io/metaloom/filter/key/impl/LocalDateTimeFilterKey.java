@@ -9,7 +9,6 @@ import static io.metaloom.filter.Operation.NOT_EQUALS;
 
 import java.time.LocalDateTime;
 
-import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.TemporalFilterValue;
@@ -19,10 +18,6 @@ public class LocalDateTimeFilterKey extends AbstractFilterKey<LocalDateTimeFilte
 
 	public LocalDateTimeFilterKey(String key) {
 		super(key);
-	}
-
-	public LocalDateTimeFilterKey(String key, FilterAction<LocalDateTimeFilterKey, TemporalFilterValue> action) {
-		super(key, action);
 	}
 
 	@Override

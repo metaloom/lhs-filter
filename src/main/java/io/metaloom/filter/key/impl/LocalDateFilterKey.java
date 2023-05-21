@@ -3,7 +3,6 @@ package io.metaloom.filter.key.impl;
 import java.time.LocalDate;
 
 import io.metaloom.filter.Operation;
-import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.TemporalFilterValue;
@@ -13,10 +12,6 @@ public class LocalDateFilterKey extends AbstractFilterKey<LocalDateFilterKey, Te
 
 	public LocalDateFilterKey(String key) {
 		super(key);
-	}
-
-	public LocalDateFilterKey(String key, FilterAction<LocalDateFilterKey, TemporalFilterValue> action) {
-		super(key, action);
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package io.metaloom.filter.key.impl;
 import java.time.Duration;
 
 import io.metaloom.filter.Operation;
-import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
@@ -14,10 +13,6 @@ public class DurationFilterKey extends AbstractFilterKey<DurationFilterKey, Dura
 
 	public DurationFilterKey(String key) {
 		super(key);
-	}
-
-	public DurationFilterKey(String key, FilterAction<DurationFilterKey, DurationRangeFilterValue> action) {
-		super(key, action);
 	}
 
 	@Override

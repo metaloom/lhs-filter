@@ -14,4 +14,5 @@ public class ValueFilter extends AbstractFilter {
 		FilterValue filterVal = key.createValue(op, val);
 		return new ValueFilter(key, op, filterVal);
 	}
+
 }

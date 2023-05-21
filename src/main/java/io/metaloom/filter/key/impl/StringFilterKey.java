@@ -1,7 +1,6 @@
 package io.metaloom.filter.key.impl;
 
 import io.metaloom.filter.Operation;
-import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
 import io.metaloom.filter.value.impl.StringFilterValue;
@@ -10,10 +9,6 @@ public class StringFilterKey extends AbstractFilterKey<StringFilterKey, StringFi
 
 	public StringFilterKey(String key) {
 		super(key);
-	}
-
-	public StringFilterKey(String key, FilterAction<StringFilterKey, StringFilterValue> action) {
-		super(key, action);
 	}
 
 	@Override

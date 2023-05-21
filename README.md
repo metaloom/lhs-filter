@@ -37,22 +37,36 @@ LocalTimeFilterKey CREATE_DATE = new LocalTimeFilterKey("created");
 SizeFilterKey FILE_SIZE = new SizeFilterKey("size");
 
 // Construct a filter
-EqualsFilter filter = USER_USERNAME.eq("joedoe");
-assertEquals("username[eq]=joedoe", filter.toString());
+ValueFilter filter1 = USER_USERNAME.eq("joedoe");
+assertEquals("username[eq]=joedoe", filter1.toString());
 
-AfterFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
+ValueFilter filter2 = CREATE_DATE.after(LocalTime.parse("13:37"));
 assertEquals("created[after]=13:37", filter2.toString());
 
-GreaterFilter filter3 = FILE_SIZE.gte("12 GB");
+ValueFilter filter3 = FILE_SIZE.gte("12 GB");
 assertEquals("size[gte]=12GB", filter3.toString());
 
 // Register the keys in the parser
-LHSFilterParser.getInstance().register(USER_USERNAME);
-LHSFilterParser.getInstance().register(CREATE_DATE);
-LHSFilterParser.getInstance().register(FILE_SIZE);
+LHSFilterParser parser = new LHSFilterParserImpl();
+parser.register(USER_USERNAME);
+parser.register(CREATE_DATE);
+parser.register(FILE_SIZE);
 
 // Parse a filter string
-List<Filter> parsedFilters = LHSFilterParser.getInstance().parse("username[eq]=joedoe");
+String queryLine = "username[eq]=joedoe,size[range]=1GB_42GB";
+List<Filter> parsedFilters = parser.parse(queryLine);
+for (Filter filter : parsedFilters) {
+  FilterKey key = filter.filterKey();
+  if (key == USER_USERNAME) {
+    System.out.println("Filter by username: " + filter.valueStr());
+  } else if (key == FILE_SIZE) {
+    if (filter instanceof RangeFilter r && r.value() instanceof SizeRangeFilterValue rv) {
+      System.out.println("Filter by size range: " + rv.getFrom() + " to " + rv.getTo() + " bytes");
+    }
+  } else {
+    throw new RuntimeException("Unknown filter " + filter.filterKey().id());
+  }
+}
 Filter parsedFilter = parsedFilters.get(0);
 assertEquals(USER_USERNAME, parsedFilter.filterKey());
 StringFilterValue value = parsedFilter.value();

@@ -8,8 +8,14 @@ public interface Filter {
 
 	<T extends FilterValue> T value();
 
-	String getOperationKey();
+	default <T extends FilterValue> String valueStr() {
+		T value = value();
+		if (value == null) {
+			return null;
+		}
+		return value.toString();
+	}
 
-	Object invoke();
+	String getOperationKey();
 
 }

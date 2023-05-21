@@ -10,12 +10,13 @@ import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.Test;
 
 import io.metaloom.filter.AbstractFilterTest;
+import io.metaloom.filter.FilterTestCases;
 import io.metaloom.filter.key.TestFilterKey;
 import io.metaloom.filter.value.impl.range.DurationRangeFilterValue;
 import io.metaloom.filter.value.impl.range.NumberRangeFilterValue;
 import io.metaloom.filter.value.impl.range.SizeRangeFilterValue;
 
-public class RangeFilterTest extends AbstractFilterTest {
+public class RangeFilterTest extends AbstractFilterTest implements FilterTestCases {
 
 	@Test
 	@Override

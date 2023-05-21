@@ -19,14 +19,12 @@ import io.metaloom.filter.parser.LHSFilterParser;
 /**
  * Default implementation for an {@link LHSFilterParser} which has already various filters registered.
  */
-public enum DefaultLHSFilterParser implements LHSFilterParser {
-
-	INSTANCE;
+public class LHSFilterParserImpl implements LHSFilterParser {
 
 	private final Map<String, FilterParser> filters = new HashMap<>();
-	private Map<String, FilterKey> keys = new HashMap<>();
+	private final Map<String, FilterKey> keys = new HashMap<>();
 
-	DefaultLHSFilterParser() {
+	public LHSFilterParserImpl() {
 		register(Operation.EQUALS, ValueFilter::parse);
 		register(Operation.NOT_EQUALS, ValueFilter::parse);
 		register(Operation.BEFORE, ValueFilter::parse);
@@ -48,7 +46,7 @@ public enum DefaultLHSFilterParser implements LHSFilterParser {
 
 	@Override
 	public void register(FilterKey key) {
-		keys.put(key.key(), key);
+		keys.put(key.id(), key);
 	}
 
 	@Override
@@ -74,7 +72,4 @@ public enum DefaultLHSFilterParser implements LHSFilterParser {
 		return parser.parse(filterKey, op, val);
 	}
 
-	public static LHSFilterParser getInstance() {
-		return INSTANCE;
-	}
 }

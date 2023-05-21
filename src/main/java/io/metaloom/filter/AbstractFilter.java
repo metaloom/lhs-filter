@@ -17,7 +17,7 @@ public abstract class AbstractFilter implements Filter {
 	@Override
 	public String toString() {
 		// LHS brackets format
-		return key.key() + "[" + getOperationKey() + "]=" + value();
+		return key.id() + "[" + getOperationKey() + "]=" + value();
 	}
 
 	@Override
@@ -35,10 +35,4 @@ public abstract class AbstractFilter implements Filter {
 	public <T extends FilterValue> T value() {
 		return (T) value;
 	}
-
-	@Override
-	public Object invoke() {
-		return key.invoke(this);
-	}
-
 }

@@ -5,7 +5,6 @@ import static io.metaloom.filter.Operation.GREATER;
 import static io.metaloom.filter.Operation.LESSER;
 import static io.metaloom.filter.Operation.NOT_EQUALS;
 
-import io.metaloom.filter.action.FilterAction;
 import io.metaloom.filter.impl.RangeFilter;
 import io.metaloom.filter.impl.ValueFilter;
 import io.metaloom.filter.key.AbstractFilterKey;
@@ -17,10 +16,6 @@ public class SizeFilterKey extends AbstractFilterKey<SizeFilterKey, SizeFilterVa
 
 	public SizeFilterKey(String key) {
 		super(key);
-	}
-
-	public SizeFilterKey(String key, FilterAction<SizeFilterKey, SizeFilterValueVariant> action) {
-		super(key, action);
 	}
 
 	@Override

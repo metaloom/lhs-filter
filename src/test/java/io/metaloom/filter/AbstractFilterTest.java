@@ -4,12 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+
+import io.metaloom.filter.key.TestFilterKey;
 import io.metaloom.filter.parser.LHSFilterParser;
+import io.metaloom.filter.parser.impl.LHSFilterParserImpl;
 import io.metaloom.filter.value.FilterValue;
 
-public abstract class AbstractFilterTest implements FilterTestCases {
+public abstract class AbstractFilterTest {
 
-	LHSFilterParser parser = LHSFilterParser.getInstance();
+	public LHSFilterParser parser = new LHSFilterParserImpl();
+
+	@BeforeEach
+	public void setup() {
+		parser.register(TestFilterKey.USER_USERNAME);
+		parser.register(TestFilterKey.ARTICLE_PRICE);
+		parser.register(TestFilterKey.DUE_TIME);
+		parser.register(TestFilterKey.DUE_DATE);
+		parser.register(TestFilterKey.DUE);
+		parser.register(TestFilterKey.FILE_SIZE);
+		parser.register(TestFilterKey.VIDEO_DURATION);
+	}
 
 	@SuppressWarnings("unchecked")
 	public <F extends Filter, V extends FilterValue> F assertParsedFilter(String expectedFilterStr, F filter) {
