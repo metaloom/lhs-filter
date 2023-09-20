@@ -59,12 +59,17 @@ for (Filter filter : parsedFilters) {
   FilterKey key = filter.filterKey();
   if (key == USER_USERNAME) {
     System.out.println("Filter by username: " + filter.valueStr());
-  } else if (key == FILE_SIZE) {
-    if (filter instanceof RangeFilter r && r.value() instanceof SizeRangeFilterValue rv) {
-      System.out.println("Filter by size range: " + rv.getFrom() + " to " + rv.getTo() + " bytes");
-    }
+  } else if (key == FILE_SIZE && filter instanceof RangeFilter r && r.value() instanceof SizeRangeFilterValue rv) {
+    System.out.println("Filter by size range: " + rv.getFrom() + " to " + rv.getTo() + " bytes");
   } else {
     throw new RuntimeException("Unknown filter " + filter.filterKey().id());
+  }
+
+  if (filter.matches(USER_USERNAME, Operation.EQUALS)) {
+    String result = filter.apply(StringFilterValue.class, sv -> {
+      return "blub";
+    });
+    System.out.println("Result: " + result);
   }
 }
 Filter parsedFilter = parsedFilters.get(0);
